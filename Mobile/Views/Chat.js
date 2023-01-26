@@ -7,7 +7,7 @@ import Messages from '../Components/Chat/Messages';
 
 const Chat = ({ navigation }) => {
     return (
-        <SafeAreaView style={ styles.mainView }>
+        <SafeAreaView>
             <HeaderChat 
                 nickname = "Lucario"
                 noSeenMessage = { 5 }
