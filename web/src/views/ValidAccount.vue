@@ -1,17 +1,27 @@
 <template>
     <main>
-        <section>
-            <h3>Valider votre compte</h3>
+        <section v-if="step == 0">
+            <div class="title-container">
+                <h3>Valider votre compte</h3>
+            </div>
+
             <form @submit.prevent="submitCode">
                 <input 
-                    type="text"
+                    type="password"
                     placeholder="Code de validation"
                     v-model="code"
                 >
                 <button type="submit">Valider</button>
             </form>
-            <Loader v-if="loading"/>
         </section>
+
+        <section v-else>
+            <p v-if="!error">Félicitations, votre compte a été validé avec succès !</p>
+            <p v-else>Un problème a été rencontré lors de la validation de votre compte !</p>
+            <p>Vous pouvez maintenant fermer cette page !</p>
+        </section>
+
+        <Loader v-if="loading"/>
     </main>
 </template>
 
@@ -22,8 +32,8 @@ import { URL_API } from "../../config.json";
 
 export default {
     setup() {
-        const code = ref(""), loading = ref(false);
-        return { code, loading };
+        const code = ref(""), loading = ref(false), error = ref(false), step = ref(0);
+        return { code, loading, error, step };
     },
     methods: {
         async submitCode() {
@@ -41,7 +51,8 @@ export default {
             this.loading = true;
             const res = await fetch(URL_API + "/user/validAccount", requestOptions);
             this.loading = false;
-            console.log(res);
+            this.step = 1;
+            this.error = res.status === 201 ? false : true;
         }
     },
     components: { Loader }
@@ -49,4 +60,65 @@ export default {
 </script>
 
 <style lang="scss">
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(4, 4, 28);
+    color: #333;
+
+    section {
+        padding: 50px;
+        border-radius: 30px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        .title-container {
+            overflow: hidden;
+
+            h3 {
+                font-weight: 500;
+                color: #333;
+                font-size: 20px;
+                transform: translateY(100%);
+                animation: apparitionTitle 0.3s linear forwards;
+            }   
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+
+            input {
+                outline: none;
+            }
+
+            button {
+                padding: 5px 30px;
+                border: none;
+                outline: none;
+                background-color: rgb(4, 4, 28);
+                color: white;
+                cursor: pointer;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+@keyframes apparitionTitle {
+    to {
+        transform: translate(0);
+    }
+}
 </style>
