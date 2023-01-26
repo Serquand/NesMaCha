@@ -38,7 +38,7 @@ const checkSignUp : RequestHandler = async (req: Request, res: Response, next: N
         return res.status(400).json("Vous devez vous inscrire avec votre adresse EFREI.");
     }
 
-    req.body.firstName = "Esteban";
+    req.body.name = "Esteban";
     req.body.lastName = "VINCENT";
 
     next();

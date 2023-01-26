@@ -32,6 +32,11 @@ const User = sequelize.define("User", {
         allowNull: false
     }, 
     
+    tempPassword: {
+        type: DataTypes.STRING(6),
+        allowNull: true
+    },
+
     valid: {
         type: DataTypes.BOOLEAN, 
         allowNull: false, 
