@@ -12,15 +12,17 @@ const Login = () => {
 
     const handleLogin = async () => {
         const endpoint = mode == "I" ? "signin" : mode == "U" ? "signup" : "retrieve";
+        console.log(username, password, email, confirmPassword);
         const requestOptions = {
             method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
             body: JSON.stringify({
                 username, password, email, confirmPassword
             })
         }
-
-        console.log(urlApi + "/user/" + endpoint);
-
+        
         await fetch(urlApi + "/user/" + endpoint, requestOptions);
     }
 

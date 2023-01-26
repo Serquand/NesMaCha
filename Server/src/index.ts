@@ -18,6 +18,6 @@ app.use("/user", userRouter);
 
 app.listen(PORT, () => {
     setup();
-    console.clear();
+    // console.clear();
     console.log("We are listening on PORT", PORT);
 });
