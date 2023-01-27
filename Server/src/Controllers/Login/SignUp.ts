@@ -15,6 +15,7 @@ import { Op } from "sequelize";
 const signUp: RequestHandler = async (req: Request, res: Response) => {
     const password = await hash(req.body.password);
     const tempCode = v4().slice(0, 6); 
+    const idUser = v4();
 
     // Création de l'utilisateur en db
     await User.create({
@@ -23,7 +24,8 @@ const signUp: RequestHandler = async (req: Request, res: Response) => {
         lastName: req.body.lastName,
         password,
         tempPassword: tempCode,
-        valid: false
+        valid: false, 
+        idUser
     });
 
     // Si aucune confirmation, suppression de l'utilisateur en DB 15 min plus tard.
@@ -31,8 +33,8 @@ const signUp: RequestHandler = async (req: Request, res: Response) => {
         User.destroy({
             where: {
                 [Op.and]: [
-                    { email: req.body.email },
-                    { valid: false }
+                    { valid: false }, 
+                    { idUser },
                 ]
             }
         })
@@ -43,7 +45,7 @@ const signUp: RequestHandler = async (req: Request, res: Response) => {
         from: process.env.USER_MAIL as string, 
         to: req.body.email as string,
         subject : "Valider votre inscription", 
-        html: signUpConfirmation(tempCode)
+        html: signUpConfirmation(tempCode, idUser)
     }
 
     transporter.sendMail(mailOptions, (err, succ) => {
