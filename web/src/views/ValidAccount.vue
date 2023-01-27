@@ -52,7 +52,7 @@ export default {
             const res = await fetch(URL_API + "/user/validAccount", requestOptions);
             this.loading = false;
             this.step = 1;
-            this.error = res.status === 201 ? false : true;
+            this.error = res.status === 200 ? false : true;
         }
     },
     components: { Loader }
