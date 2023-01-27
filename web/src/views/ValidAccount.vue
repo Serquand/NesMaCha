@@ -7,7 +7,7 @@
 
             <form @submit.prevent="submitCode">
                 <input 
-                    type="password"
+                    type="text"
                     placeholder="Code de validation"
                     v-model="code"
                 >
@@ -28,13 +28,21 @@
 <script>
 import Loader from '@/components/LoaderFetch.vue';
 import { ref } from 'vue';
-import { URL_API } from "../../config.json";
+import information from "../../config.json";
 
 export default {
     setup() {
         const code = ref(""), loading = ref(false), error = ref(false), step = ref(0);
+        
         return { code, loading, error, step };
+    },     
+
+    data: () => {
+        return {
+            URL_API: information.URL_API, 
+        }
     },
+
     methods: {
         async submitCode() {
             const requestOptions = {
@@ -49,7 +57,7 @@ export default {
             };
 
             this.loading = true;
-            const res = await fetch(URL_API + "/user/validAccount", requestOptions);
+            const res = await fetch(this.URL_API + "/user/validAccount", requestOptions);
             this.loading = false;
             this.step = 1;
             this.error = res.status === 200 ? false : true;
