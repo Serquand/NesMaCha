@@ -25,7 +25,8 @@ const signUp: RequestHandler = async (req: Request, res: Response) => {
         password,
         tempPassword: tempCode,
         valid: false, 
-        idUser
+        idUser,
+        pseudo: req.body.pseudo
     });
 
     // Si aucune confirmation, suppression de l'utilisateur en DB 15 min plus tard.

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Pressable, View, Image, Text , StyleSheet} from "react-native";
 import InputLogin from "../Components/Login/InputLogin";
 import { urlApi } from "../config.json";
-import { io } from 'socket.io-client'
+// import { io } from 'socket.io-client'
 
 const Login = () => {
-    const socket = io(urlApi);
+    // const socket = io(urlApi);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");

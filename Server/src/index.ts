@@ -8,6 +8,8 @@ import cors, { CorsOptions } from "cors";
 
 import userRouter from "./Router/User";
 import setup from "./Models/Setup";
+import checkJWT from "./Utils/JWT/CheckJWT";
+import { socketInit } from "./Utils/WebSocket/WebSocket";
 
 const app = express();
 const httpServer = createServer(app);
@@ -29,4 +31,15 @@ httpServer.listen(PORT, () => {
 
 io.on("connect", (socket) => {
     console.log("A new user is now connected !");
+
+    socket.on("setupSession", information => {
+        // If the auth is invalid, leave the process
+        if(!checkJWT(information.user, information.token)) return;
+
+        // Init the socket by joining all the rooms
+        socketInit(information.user, socket);
+
+        // Setup all the socket event
+        
+    });
 })

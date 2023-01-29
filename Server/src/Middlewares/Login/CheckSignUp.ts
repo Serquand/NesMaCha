@@ -4,7 +4,8 @@ import userExists from "../../Utils/User/UserExists";
 
 /* 
     Check :
-    - Existence of the user
+    - Existence of the email
+    - Existence of the pseudo
     - Email EFREI
     - Password not null
     - Password and confirm password match
@@ -22,15 +23,15 @@ const checkSignUp : RequestHandler = async (req: Request, res: Response, next: N
         return res.status(400).json("Le mot de passe ne doit pas être vide");
     }
 
-    if(!req.body.pseudo || req.body.pseudo == "") {
+    if(!req.body.pseudo || req.body.pseudo == "" || req.body.pseudo.length <= 100) {
         return res.status(400).json("Le pseudo ne doit pas être vide");
     }
 
-    if(!req.body.email || req.body.email == "") {
+    if(!req.body.email || req.body.email == "" || req.body.email.length <= 100) {
         return res.status(400).json("L'adresse email ne doit pas être vide");
     }
 
-    if(await userExists(req.body.email)) {
+    if(await userExists(req.body.email, req.body.pseudo)) {
         return res.status(400).json("Vous avez déjà un compte !");
     }
 
