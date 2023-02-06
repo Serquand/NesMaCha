@@ -15,6 +15,8 @@ import userExists from "../../Utils/User/UserExists";
     - First name and last name
 */
 const checkSignUp : RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+    console.log("Test");
+    
     if(req.body.password != req.body.confirmPassword) {
         return res.status(400).json("Les mots de passe doivent être identiques");
     }
@@ -23,11 +25,13 @@ const checkSignUp : RequestHandler = async (req: Request, res: Response, next: N
         return res.status(400).json("Le mot de passe ne doit pas être vide");
     }
 
-    if(!req.body.pseudo || req.body.pseudo == "" || req.body.pseudo.length <= 100) {
+    console.log(req.body.pseudo);
+    
+    if(!req.body.pseudo || req.body.pseudo == "" || req.body.pseudo.length >= 100) {
         return res.status(400).json("Le pseudo ne doit pas être vide");
     }
 
-    if(!req.body.email || req.body.email == "" || req.body.email.length <= 100) {
+    if(!req.body.email || req.body.email == "" || req.body.email.length >= 100) {
         return res.status(400).json("L'adresse email ne doit pas être vide");
     }
 

@@ -2,30 +2,43 @@ import React, { useState } from "react";
 import { Pressable, View, Image, Text , StyleSheet} from "react-native";
 import InputLogin from "../Components/Login/InputLogin";
 import { urlApi } from "../config.json";
+import AlertModal from "../Components/General/AlertModal";
 // import { io } from 'socket.io-client'
 
-const Login = () => {
+const Login = ({ navigation }) => {
     // const socket = io(urlApi);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [mode, setMode] = useState("I");
+    const [information, setInformation] = useState("")
 
     const handleLogin = async () => {
         const endpoint = mode == "I" ? "signin" : mode == "U" ? "signup" : "retrieve";
-        console.log(username, password, email, confirmPassword);
         const requestOptions = {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify({
-                username, password, email, confirmPassword
+                pseudo: username, 
+                password, 
+                email, 
+                confirmPassword
             })
         }
         
-        await fetch(urlApi + "/user/" + endpoint, requestOptions);
+        const res = await fetch(urlApi + "/user/" + endpoint, requestOptions);
+        if(res.status == 201) {
+            
+        } else if(res.status == 200) {
+            navigation.navigate("Home")
+        } else {
+            const error = await res.json().information;
+            console.log(error);
+            setInformation(error)
+        }
     }
 
     return (
@@ -38,6 +51,9 @@ const Login = () => {
             </View>
 
             <View style = {[ styles.mainFlex, styles.mainView, styles.flexCenter ]}>
+                <Text style={ styles.title }>
+                    { mode == "R" ? "Récupération" : mode == "I" ? "Connexion" : "Inscription" }
+                </Text>
                 {/* If we aren't in sign in mode */}
                 {mode != 'I' && <InputLogin 
                     stateChanger={setEmail}
@@ -79,14 +95,30 @@ const Login = () => {
             </View>
 
             <View style={styles.bottomLogin}>
-                <Text style={styles.toggleMode}>{ mode !== "U" ? "Pas de compte ?" : "Déjà un compte ?" }</Text>
+                <View>
+                    <Text style={styles.toggleMode}>{ mode !== "U" ? "Pas de compte ?" : "Déjà un compte ?" }</Text>
+                    <Pressable onPress={() => setMode((mode == "U" ? "I" : "U"))}>
+                        <Text style={[ styles.toggleMode, { color: "#14803a" }]}>
+                            { mode !== "U" ? "Inscrivez-vous ici !" : "Connectez-vous ici !" }
+                        </Text>
+                    </Pressable> 
+                </View>
 
-                <Pressable onPress={() => setMode((mode == "U" ? "I" : "U"))}>
-                    <Text style={[ styles.toggleMode, { color: "#14803a" }]}>
-                        { mode !== "U" ? "Inscrivez-vous ici !" : "Connectez-vous ici !" }
-                    </Text>
-                </Pressable>    
+                {mode == "I" && <View style={{ marginTop: 10 }}>
+                    <Text style={styles.toggleMode}>Mot de passe oublié ?</Text>
+                    <Pressable onPress={() => setMode("R")}>
+                        <Text style={[ styles.toggleMode, { color: "#14803a" }]}>
+                            Récupérer mon mode de passe
+                        </Text>
+                    </Pressable>    
+                </View>}
+                
             </View> 
+            
+            {information != "" && <AlertModal 
+                content = { information } 
+                title="Information" 
+            />}
         </View>
     )
 }
@@ -100,6 +132,14 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         backgroundColor: "white", 
+    },
+
+    title: { 
+        paddingBottom: 30, 
+        fontSize: 18, 
+        fontWeight: "bold", 
+        textAlign: "center", 
+        color: "#1D497C",
     },
 
     mainLogin: {
@@ -125,7 +165,7 @@ const styles = StyleSheet.create({
     bottomLogin: {    
         alignItems: "center",
         position: "absolute",
-        bottom: 35,
+        bottom: 60
     },
 
     logoImage: {
@@ -145,7 +185,8 @@ const styles = StyleSheet.create({
     }, 
 
     toggleMode: {
-        fontSize: 15
+        fontSize: 15, 
+        textAlign: "center"
     }
 });
 
