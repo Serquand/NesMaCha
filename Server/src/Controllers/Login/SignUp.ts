@@ -51,11 +51,15 @@ const signUp: RequestHandler = async (req: Request, res: Response) => {
 
     transporter.sendMail(mailOptions, (err, succ) => {
         if(err) {
-            return res.status(500).json("Une erreur s'est produite !");
+            return res.status(500).json({ 
+                information: "Une erreur s'est produite !" 
+            });
         } 
 
         if(succ) {
-            return res.status(201).json("Un mail de confirmation vient de vous être envoyer !")
+            return res.status(201).json({
+                information: "Un mail de confirmation vient de vous être envoyer !"
+            })
         }
     })
 }

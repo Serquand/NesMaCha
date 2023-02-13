@@ -14,7 +14,9 @@ const validAccount: RequestHandler = async (req: Request, res: Response) => {
     });
 
     if(resDb == null) {
-        return res.status(400).json("Une erreur s'est produite !")
+        return res.status(400).json({
+            information: "Une erreur s'est produite !"
+        })
     }
 
     await User.update({
@@ -24,7 +26,9 @@ const validAccount: RequestHandler = async (req: Request, res: Response) => {
         where: { idUser: req.body.idUser }
     })
 
-    return res.status(200).json("Votre compte a été validé avec succès !")
+    return res.status(200).json({
+        information: "Votre compte a été validé avec succès !"
+    })
 }
 
 export default validAccount;

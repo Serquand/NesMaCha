@@ -11,13 +11,14 @@ import Partner from './Views/Partner';
 import Settings from './Views/Settings';
 import History from './Views/History';
 import Credits from './Views/Credits';
+import Home from './Views/Home';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function App() {
     return (
         <Nav>   
-            <Navigator initialRouteName='Login'>
+            <Navigator initialRouteName='Credits'>
                 <Screen 
                     name='Login' 
                     component={ Login } 
@@ -61,6 +62,11 @@ export default function App() {
                 <Screen 
                     name="Credits" 
                     component={ Credits } 
+                    options={{ headerShown: false }} 
+                />
+                <Screen 
+                    name="Home" 
+                    component={ Home } 
                     options={{ headerShown: false }} 
                 />
             </Navigator>

@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
         
         const res = await fetch(urlApi + "/user/" + endpoint, requestOptions);
         if(res.status == 201) {
-            
+            setInformation("Un mail vient de vous être envoyer concernant les étapes de validation de votre compte.")
         } else if(res.status == 200) {
             navigation.navigate("Home")
         } else {
