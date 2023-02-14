@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, View, Image, Text , StyleSheet} from "react-native";
 import InputLogin from "../Components/Login/InputLogin";
 import { urlApi } from "../config.json";
 import AlertModal from "../Components/General/AlertModal";
-// import { io } from 'socket.io-client'
+import { io } from 'socket.io-client'
 
 const Login = ({ navigation }) => {
-    // const socket = io(urlApi);
+    const socket = io(urlApi);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [mode, setMode] = useState("I");
     const [information, setInformation] = useState("")
+
+    useEffect(() => {   
+        socket.emit("test", "Message content")
+    }, [])
 
     const handleLogin = async () => {
         const endpoint = mode == "I" ? "signin" : mode == "U" ? "signup" : "retrieve";

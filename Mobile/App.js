@@ -18,7 +18,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export default function App() {
     return (
         <Nav>   
-            <Navigator initialRouteName='Credits'>
+            <Navigator initialRouteName='Login'>
                 <Screen 
                     name='Login' 
                     component={ Login } 
