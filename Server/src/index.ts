@@ -7,6 +7,7 @@ import { Server } from "socket.io";
 import cors, { CorsOptions } from "cors";
 
 import userRouter from "./Router/User";
+import carPooling from "./Router/CarPooling";
 import setup from "./Models/Setup";
 import checkJWT from "./Utils/JWT/CheckJWT";
 import { socketInit } from "./Utils/WebSocket/WebSocket";
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(cors(process.env.URL_FRONT as CorsOptions));
 
 app.use("/user", userRouter);
+app.use("/carPooling", carPooling);
 
 httpServer.listen(PORT, () => {
     setup();
