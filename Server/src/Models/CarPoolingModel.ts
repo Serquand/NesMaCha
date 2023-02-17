@@ -56,6 +56,8 @@ const CarPoolingModel = sequelize.define("CarPooling", {
         type: DataTypes.STRING,
         allowNull: false, 
     }
+}, {
+    timestamps: false
 });
 
 export default CarPoolingModel;

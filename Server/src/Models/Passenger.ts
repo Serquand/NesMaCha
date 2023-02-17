@@ -25,6 +25,8 @@ const Passenger = sequelize.define("Passenger", {
             key: "idCarPooling"
         }
     }
+}, {
+    timestamps: false
 });
 
 export default Passenger;

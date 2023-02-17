@@ -32,6 +32,8 @@ const Adress = sequelize.define("Adress", {
         type: DataTypes.INTEGER, 
         allowNull: false, 
     },
+}, {
+    timestamps: false
 })
 
 export default Adress;
