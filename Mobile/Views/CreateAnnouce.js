@@ -1,12 +1,28 @@
-import React from 'react'
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react'
+import { SafeAreaView, View, StyleSheet, Text } from 'react-native';
 import SearchLocation from '../Components/CreateAnnounce/SearchLocation';
 
 const CreateAnnounce = ({ navigation }) => {
+    const [to, setTo] = useState({})
+    const [from, setFrom] = useState({})
+    const [step, setStep] = useState(0)
+
+    const validateFromChoice = (information) => {
+        setFrom(information)
+        setStep(1)
+    }
+
     return (
         <SafeAreaView style = { styles.mainContainer }>
-            <Text>TEST</Text>
-            <SearchLocation />
+            <View style={{ zIndex: 10 }}>
+                <Text>Départ</Text>
+                <SearchLocation submitChoice = { validateFromChoice }/>
+            </View>
+
+            {step != 0 && <View style={{ zIndex: 9 }}>
+                <Text>Arrivée</Text>
+                <SearchLocation />
+            </View>}
         </SafeAreaView>
     )
 }
