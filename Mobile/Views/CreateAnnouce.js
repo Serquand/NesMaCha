@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, View, StyleSheet, Text, TextInput } from 'react-native';
 import SearchLocation from '../Components/CreateAnnounce/SearchLocation';
 
 const CreateAnnounce = ({ navigation }) => {
@@ -12,6 +12,11 @@ const CreateAnnounce = ({ navigation }) => {
         setStep(1)
     }
 
+    const validateToChoice = (information) => {
+        setTo(information)
+        setStep(2)
+    }
+
     return (
         <SafeAreaView style = { styles.mainContainer }>
             <View style={{ zIndex: 10 }}>
@@ -21,7 +26,14 @@ const CreateAnnounce = ({ navigation }) => {
 
             {step != 0 && <View style={{ zIndex: 9 }}>
                 <Text>Arrivée</Text>
-                <SearchLocation />
+                <SearchLocation submitChoice = { validateToChoice }/>
+            </View>}
+
+            {step > 1 && <View style={{ zIndex: 8 }}>
+                <Text>Nombre de passagers attendus</Text>
+                <TextInput
+                    
+                />
             </View>}
         </SafeAreaView>
     )
