@@ -6,7 +6,9 @@
 // Pages styles
 
 // Layout styles
-@import "../sass/Layouts/Modal.scss";
+@import "./Layouts/Modal.scss";
+@import "./Layouts/HeaderBar.scss";
 
 // Components styles
 @import "./Components/Loader.scss";
+@import "./Components/CardToProfile.scss";

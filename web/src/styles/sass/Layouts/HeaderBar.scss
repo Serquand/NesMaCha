@@ -1,0 +1,17 @@
+.header {
+    width: 100%;
+    position: absolute;
+    background-color: rgb(11, 11, 69);
+
+    &-content {
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 5px;
+
+        :nth-child(3) {
+            margin: auto 0 auto auto;
+        }
+    }
+}
