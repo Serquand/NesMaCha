@@ -1,8 +1,10 @@
+import "../../styles/css/index.css";
+
 const FooterBar = () => {
     return (
-        <>
-            <h1>Footer Bar</h1>
-        </>
+        <header>
+            
+        </header>
     )
 }
 

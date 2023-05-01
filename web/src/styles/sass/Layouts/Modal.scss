@@ -1,0 +1,60 @@
+.modal {
+    padding: 5px 0px 20px 0px !important;
+    width: 280px;
+
+    &-component {
+        padding: 0 20px;
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #B1B1B1;
+
+        h4 {
+            animation: apparitionTitle 1s cubic-bezier(.17, .67, .11, .88) forwards;
+            transform: translateY(100%);
+            color: #47424c;
+            font-variant-caps: small-caps;
+            font-weight: 500;
+            font-size: 22px;
+        }
+    }
+
+    &-information {
+        border-bottom: 1px solid #B1B1B1;
+        padding-top: 15px;
+        padding-bottom: 22px;
+    }
+
+    &-button-container {
+        padding-top: 15px;
+        text-align: right;
+
+
+        button {
+            padding: 10px 20px;
+            background: #47424c;
+            border: none;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
+}
+
+#icon {
+    width: 60px;
+    height: fit-content;
+
+    path {
+        cursor: pointer;
+        fill: none;
+        stroke-width: 40px;
+        stroke-linecap: round;
+        stroke: rgb(83, 82, 82);
+        stroke-dasharray: 240px 1000px;
+        stroke-dashoffset: -650px;
+    }
+}

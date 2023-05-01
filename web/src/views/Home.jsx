@@ -1,3 +1,5 @@
+import "../styles/css/index.css";
+
 const Home = () => {
     return (
         <>
