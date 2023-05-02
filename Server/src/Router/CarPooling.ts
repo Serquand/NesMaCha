@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express from "express";
 import getCities from "../Controllers/CarPooling/GetCities";
 
 const carPooling = express.Router();
