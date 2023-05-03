@@ -64,8 +64,9 @@ a, a::after, a::before {
 
 .header {
   width: 100%;
-  position: absolute;
+  position: fixed;
   background-color: rgb(11, 11, 69);
+  z-index: 3;
 }
 .header-content {
   width: 80%;
@@ -76,6 +77,20 @@ a, a::after, a::before {
 }
 .header-content :nth-child(3) {
   margin: auto 0 auto auto;
+}
+
+.sidebar {
+  position: fixed;
+  width: 0;
+  background-color: rgb(11, 11, 69);
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 2;
+  transition: width 0.2s ease-out;
+}
+.sidebar-toggled {
+  width: 15em;
 }
 
 .loader {

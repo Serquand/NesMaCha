@@ -6,12 +6,14 @@ import Login from "./views/Login"
 import Profil from "./views/Profil"
 import History from "./views/History"
 import FooterBar from "./components/General/FooterBar"
+import SideBar from "./components/General/SideBar"
 
 function App() {
     return (
         <>
             <div className="app-body">
                 <HeaderBar />
+                <SideBar />
                 <main>
                     <Routes>
                         <Route path="/" element={ <Home /> } />
