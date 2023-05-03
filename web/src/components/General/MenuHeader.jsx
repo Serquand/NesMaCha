@@ -5,6 +5,8 @@ import Annonces from "../../assets/Annonces.png";
 import Chat from "../../assets/Chat.png";
 import Demandes from "../../assets/Demandes.png";
 import Historique from "../../assets/Historique.png";
+import Home from "../../assets/home.png";
+import { Link } from "react-router-dom";
 
 const MenuHeader = () => {
     const dispatch = useDispatch();
@@ -27,22 +29,39 @@ const MenuHeader = () => {
         {
             img: Historique, 
             categoryName: "Historique"
+        }, 
+        {
+            img: Home, 
+            categoryName: "Accueil", 
+            redirectTo: "/"
         }
     ];
 
     return (
         <ul className="menu-header">
             {navOptions.map((option, index) => (
-                <li 
-                    onClick={() => toggleCategory(option.categoryName)} 
+                <div
                     className="menu-header-element"
                     key={index}
+                    onClick={() => toggleCategory(option.categoryName)}
                 >
-                    <img 
-                        src={option.img} 
-                        alt={option.categoryName} 
-                    />
-                </li>
+                    {option.redirectTo ? (
+                        <Link to={option.redirectTo}>
+                            <li>
+                                <img 
+                                    src={option.img} 
+                                    alt={option.categoryName} 
+                                />
+                            </li>
+                        </Link>) : (
+                        <li>
+                            <img 
+                                src={option.img} 
+                                alt={option.categoryName} 
+                            />
+                        </li>
+                    )}
+                </div>
             ))}
         </ul>
     )

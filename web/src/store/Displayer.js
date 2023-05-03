@@ -15,7 +15,8 @@ const displayerSlice = createSlice({
         }, 
     
         switchCategory: (state, newCategory) => {
-            if(state.category == newCategory.payload) state.menuVisible = !state.menuVisible; 
+            if(newCategory.payload == "Accueil") state.menuVisible = false; 
+            else if(state.category == newCategory.payload) state.menuVisible = !state.menuVisible; 
             else {
                 state.menuVisible = true;
                 state.category = newCategory.payload;
