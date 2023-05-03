@@ -1,13 +1,15 @@
 import "../../styles/css/index.css";
 import CardToProfil from "./CardToProfil"; 
-import { useDispatch } from "react-redux";
 import MenuHeader from "./MenuHeader";
+import { useSelector } from "react-redux";
 
 const HeaderBar = () => {
+    const { userName } = useSelector(state => state.user);
+
     return (
         <header className="header">
             <div className="header-content">
-                <MenuHeader />
+                {userName ? <MenuHeader /> : <div></div>}
                 <CardToProfil />
             </div>
         </header>
