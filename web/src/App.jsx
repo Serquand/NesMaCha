@@ -6,9 +6,12 @@ import Login from "./views/Login"
 import Profil from "./views/Profil"
 import History from "./views/History"
 import FooterBar from "./components/General/FooterBar"
-import SideBar from "./components/General/SideBar"
+import SideBar from "./components/General/SideBar";
+import { setupSocket } from "./Socket/Socket"
 
 function App() {
+    setupSocket();
+    
     return (
         <>
             <div className="app-body">
