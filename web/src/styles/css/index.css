@@ -66,7 +66,7 @@ a, a::after, a::before {
   width: 100%;
   position: fixed;
   background-color: rgb(11, 11, 69);
-  z-index: 3;
+  z-index: 1500;
 }
 .header-content {
   margin: auto;
@@ -85,7 +85,7 @@ a, a::after, a::before {
   top: 0;
   bottom: 0;
   height: 100%;
-  z-index: 2;
+  z-index: 1499;
   transition: width 0.2s ease-out;
   padding-top: 70px;
   overflow-x: hidden;
@@ -93,6 +93,15 @@ a, a::after, a::before {
 }
 .sidebar-toggled {
   width: 15em;
+}
+
+.markercluster-map {
+  width: 100vw;
+  height: 100vh;
+}
+
+.leaflet-control-zoom-out {
+  display: none !important;
 }
 
 .loader {

@@ -2,9 +2,7 @@ import "../../styles/css/index.css";
 
 const FooterBar = () => {
     return (
-        <header>
-            
-        </header>
+        <footer></footer>
     )
 }
 

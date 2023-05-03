@@ -1,9 +1,13 @@
 import "../styles/css/index.css";
+import LeaftLetView from "../components/Home/LeafletView";
+
 
 const Home = () => {
     return (
         <>
-            <h1>Home</h1>
+            <div id="map">
+                <LeaftLetView />
+            </div>
         </>
     )
 }
