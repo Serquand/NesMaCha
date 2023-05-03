@@ -5,13 +5,13 @@
     z-index: 3;
 
     &-content {
-        width: 80%;
+        
         margin: auto;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        padding: 5px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 5px 40px;
 
-        :nth-child(3) {
+        > :nth-child(2) {
             margin: auto 0 auto auto;
         }
     }

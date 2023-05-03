@@ -69,13 +69,12 @@ a, a::after, a::before {
   z-index: 3;
 }
 .header-content {
-  width: 80%;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 5px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 5px 40px;
 }
-.header-content :nth-child(3) {
+.header-content > :nth-child(2) {
   margin: auto 0 auto auto;
 }
 
@@ -88,6 +87,9 @@ a, a::after, a::before {
   height: 100%;
   z-index: 2;
   transition: width 0.2s ease-out;
+  padding-top: 70px;
+  overflow-x: hidden;
+  color: white;
 }
 .sidebar-toggled {
   width: 15em;
@@ -127,6 +129,27 @@ a, a::after, a::before {
 }
 .card-to-profile-img {
   width: 40px;
+}
+
+.menu-header {
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+}
+.menu-header-element {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.menu-header-element img {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
 }
 
 /*# sourceMappingURL=index.css.map */

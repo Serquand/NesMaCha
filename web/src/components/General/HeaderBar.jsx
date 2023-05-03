@@ -1,15 +1,13 @@
 import "../../styles/css/index.css";
-import HamburgerMenu from "./HamburgerMenu";
-import CardToProfil from "./CardToProfil";
+import CardToProfil from "./CardToProfil"; 
+import { useDispatch } from "react-redux";
+import MenuHeader from "./MenuHeader";
 
 const HeaderBar = () => {
     return (
         <header className="header">
             <div className="header-content">
-                <HamburgerMenu />
-                <div className="header-logo">
-
-                </div>
+                <MenuHeader />
                 <CardToProfil />
             </div>
         </header>

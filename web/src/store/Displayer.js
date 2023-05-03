@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { menuVisible: false };
+const initialState = { 
+    menuVisible: false, 
+    category: "Chat"
+};
 
 const displayerSlice = createSlice({
     name: "displayer",
@@ -10,12 +13,17 @@ const displayerSlice = createSlice({
             state.menuVisible = !state.menuVisible; 
             console.log("Le menu est ouvert :", state.menuVisible)
         }, 
-
-        hideMenu: (state) => {
-            state.menuVisible = false;
+    
+        switchCategory: (state, newCategory) => {
+            if(state.category == newCategory.payload) state.menuVisible = !state.menuVisible; 
+            else {
+                state.menuVisible = true;
+                state.category = newCategory.payload;
+                console.log("Nous sommes passés à la catégorie ", newCategory.payload);
+            }
         }
     }
 });
 
-export const { toggleMenu, hideMenu } = displayerSlice.actions;
+export const { toggleMenu, switchCategory } = displayerSlice.actions;
 export default displayerSlice.reducer;

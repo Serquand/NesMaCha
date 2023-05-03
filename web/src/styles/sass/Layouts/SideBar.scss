@@ -7,6 +7,9 @@
     height: 100%;
     z-index: 2;
     transition: width .2s ease-out;
+    padding-top: 70px;
+    overflow-x: hidden;
+    color: white;
     
     &-toggled {
         width: 15em;

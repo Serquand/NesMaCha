@@ -1,0 +1,22 @@
+.menu-header {
+    display: flex;
+    gap: 10px;
+    list-style-type: none;
+
+    &-element {
+        width: 41px;
+        height: 41px;
+        border-radius: 50%;
+        border: 2px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        img {
+            width: 25px;
+            height: 25px;
+            object-fit: cover;
+        }
+    }
+}
