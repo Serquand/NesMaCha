@@ -1,11 +1,8 @@
 import { useDispatch } from "react-redux";
+import { toggleMenu } from "../../store/Displayer"
 
 const HamburgerMenu = () => {
     const dispatch = useDispatch();
-
-    const toggle = () => {
-        dispatch(toggleMenu())   
-    }
 
     return (
         <>
@@ -18,7 +15,7 @@ const HamburgerMenu = () => {
                 fill="rgba(0,0,0,0)" 
                 strokeLinecap="round" 
                 style={{ cursor: "pointer", width: "50px" }}
-                onClick={toggle}
+                onClick={() => dispatch(toggleMenu())}
             >
                 <path d="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7">
                     <animate 

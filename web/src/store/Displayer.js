@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { menuVisible: true };
+const initialState = { menuVisible: false };
 
 const displayerSlice = createSlice({
     name: "displayer",
@@ -8,6 +8,7 @@ const displayerSlice = createSlice({
     reducers: {
         toggleMenu: (state) => {
             state.menuVisible = !state.menuVisible; 
+            console.log("Le menu est ouvert :", state.menuVisible)
         }, 
 
         hideMenu: (state) => {
