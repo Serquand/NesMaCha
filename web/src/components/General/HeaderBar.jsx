@@ -9,7 +9,8 @@ const HeaderBar = () => {
     return (
         <header className="header">
             <div className="header-content">
-                {userName ? <MenuHeader /> : <div></div>}
+                {/* {userName ? <MenuHeader /> : <div></div>} */}
+                <MenuHeader />
                 <CardToProfil />
             </div>
         </header>
