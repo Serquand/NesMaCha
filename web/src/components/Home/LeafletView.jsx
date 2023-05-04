@@ -1,37 +1,27 @@
-import { useEffect, useState } from "react";
 import "../../styles/css/index.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-const LeaftLetView = () => {
-    const [geographicalPositon, setGeographicalPosition] = useState([]); 
-    const [geographicalPositionAllowed, setGeographicalPositionAllowed] = useState(false)
+const LeaftLetView = (props) => { 
+    const { center, allMarkers, zoomLevel } = props;
 
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(position => {
-            setGeographicalPosition([position.coords.latitude, position.coords.longitude]);
-            setGeographicalPositionAllowed(true);
-        })
-    }, []);
+    console.log(props);
 
     return (
         <MapContainer
             className="markercluster-map"
-            center={[48.788556, 2.364018]}
-            zoom={12.5}
+            center={center}
+            zoom={zoomLevel}
         >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
 
-            <Marker position={[48.788556, 2.364018]}>
-                <Popup>EFREI Paris</Popup>
-            </Marker>
-            {geographicalPositionAllowed && (
-                <Marker position={ geographicalPositon }>
-                    <Popup>Votre localisation</Popup>
+            {allMarkers.map((marker, index) => (
+                <Marker position={marker.coords} key={index}>
+                    {marker.popUp && <Popup>{marker.popUp}</Popup>}
                 </Marker>
-            )}
+            ))}
         </MapContainer>
     );
 }   
