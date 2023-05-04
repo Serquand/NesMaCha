@@ -1,5 +1,5 @@
 import "../styles/css/index.css";
-import LeaftLetView from "../components/Home/LeafletView";
+import LeaftLetView from "../components/General/LeafletView";
 import { useState, useEffect } from "react";
 
 const Home = () => {

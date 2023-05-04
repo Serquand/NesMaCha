@@ -22,8 +22,8 @@ function App() {
                         <Route path="/" element={ <Home /> } />
                         <Route path='/listChat' element = { <ListChat /> } />
                         <Route path="/login" element={ <Login /> }/>
-                        <Route path="/profile/:idUser" element={ <Profil /> }/>
-                        <Route path="/history/:idUser" element={ <History /> }/>
+                        <Route path="/profile" element={<Profil />} />
+                        <Route path="/history/:userName" element={ <History /> }/>
                     </Routes>
                 </main>
             </div>

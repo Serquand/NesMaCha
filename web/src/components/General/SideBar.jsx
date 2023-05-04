@@ -3,6 +3,7 @@ import "../../styles/css/index.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import appInformations from "../../../informations.json";
+import ListSelectChat from "../Chat/ListSelectChat";
 
 const SideBar = (props) => {
     const { menuVisible } = useSelector(state => state.displayer)
@@ -29,6 +30,7 @@ const SideBar = (props) => {
 
     return (
         <section className={`sidebar ${(menuVisible ? 'sidebar-toggled' : '')}`}>
+            {category == "Chat" && <ListSelectChat informations={informations} />}
         </section>
     )
 } 
