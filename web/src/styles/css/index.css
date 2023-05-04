@@ -92,7 +92,7 @@ a, a::after, a::before {
   color: white;
 }
 .sidebar-toggled {
-  width: 15em;
+  width: 16em;
 }
 
 .markercluster-map {
@@ -166,6 +166,42 @@ a, a::after, a::before {
   border-left: 2px solid white;
   margin: 0 10px;
   padding: 0 15px;
+}
+
+.select-chat {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.select-chat-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+}
+.select-chat-img-unseen {
+  font-size: 10px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(40%);
 }
 
 /*# sourceMappingURL=index.css.map */
