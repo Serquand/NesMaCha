@@ -4,8 +4,6 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 const LeaftLetView = (props) => { 
     const { center, allMarkers, zoomLevel } = props;
 
-    console.log(props);
-
     return (
         <MapContainer
             className="markercluster-map"

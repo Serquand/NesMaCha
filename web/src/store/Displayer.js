@@ -11,7 +11,6 @@ const displayerSlice = createSlice({
     reducers: {
         toggleMenu: (state) => {
             state.menuVisible = !state.menuVisible; 
-            console.log("Le menu est ouvert :", state.menuVisible)
         }, 
     
         switchCategory: (state, newCategory) => {
@@ -20,7 +19,6 @@ const displayerSlice = createSlice({
             else {
                 state.menuVisible = true;
                 state.category = newCategory.payload;
-                console.log("Nous sommes passés à la catégorie ", newCategory.payload);
             }
         }
     }

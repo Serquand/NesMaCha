@@ -15,7 +15,6 @@ const Home = () => {
                 coords: [position.coords.latitude, position.coords.longitude], 
                 popUp: "Votre localisation" 
             })
-            console.log(temp);
             setAllCoords(temp);
             setKey(key + 1);
         })
