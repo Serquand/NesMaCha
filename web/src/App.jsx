@@ -8,6 +8,7 @@ import FooterBar from "./components/General/FooterBar"
 import Chat from "./views/Chat"
 import SideBar from "./components/General/SideBar";
 import { setupSocket } from "./Socket/Socket"
+import BannerAlert from "./components/General/BannerAlert"
 
 function App() {
     setupSocket();
@@ -17,6 +18,10 @@ function App() {
             <div className="app-body">
                 <HeaderBar />
                 <SideBar />
+                <BannerAlert 
+                    duration={1} 
+                    information="Ceci est un test" 
+                />
                 <main>
                     <Routes>
                         <Route path="/" element={ <Home /> } />

@@ -87,7 +87,7 @@ a, a::after, a::before {
   height: 100%;
   z-index: 1499;
   transition: width 0.2s ease-out;
-  padding-top: 70px;
+  padding-top: 52px;
   overflow-x: hidden;
   color: white;
 }
@@ -176,10 +176,11 @@ a, a::after, a::before {
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  overflow-x: hidden;
 }
 .select-chat-img {
-  width: 30px;
-  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
   border-radius: 50%;
   background-color: #555;
   display: flex;
@@ -202,6 +203,65 @@ a, a::after, a::before {
   justify-content: center;
   align-items: center;
   transform: translate(40%);
+}
+.select-chat-user {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.chat-form {
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.banner-alert {
+  position: fixed;
+  top: 70px;
+  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000000000000000;
+  color: white;
+  text-align: center;
+  opacity: 1;
+  position: relative;
+  animation-name: disapearBannerAlert;
+  animation-timing-function: ease-out;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+}
+.banner-alert-shape {
+  padding: 15px 50px;
+  background-color: rgb(11, 11, 69);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 50%, 100% 100%, 0 100%, 30px 50%);
+}
+.banner-alert-timer {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0px;
+  background-color: white;
+  left: 0;
+  right: 0;
+  animation-name: createTimerAnim;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes createTimerAnim {
+  to {
+    width: 0%;
+  }
+}
+@keyframes disapearBannerAlert {
+  to {
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
