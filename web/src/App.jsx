@@ -18,10 +18,7 @@ function App() {
             <div className="app-body">
                 <HeaderBar />
                 <SideBar />
-                <BannerAlert 
-                    duration={1} 
-                    information="Ceci est un test" 
-                />
+                {/* <BannerAlert duration={5} information="Ceci est un test" /> */}
                 <main>
                     <Routes>
                         <Route path="/" element={ <Home /> } />
