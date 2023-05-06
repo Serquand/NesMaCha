@@ -9,6 +9,7 @@ import Chat from "./views/Chat"
 import SideBar from "./components/General/SideBar";
 import { setupSocket } from "./Socket/Socket"
 import BannerAlert from "./components/General/BannerAlert"
+import NotFound from "./views/NotFound"
 
 function App() {
     setupSocket();
@@ -18,14 +19,15 @@ function App() {
             <div className="app-body">
                 <HeaderBar />
                 <SideBar />
-                {/* <BannerAlert duration={5} information="Ceci est un test" /> */}
+                {/* <BannerAlert duration={2} information="Ceci est un test" /> */}
                 <main>
                     <Routes>
                         <Route path="/" element={ <Home /> } />
                         <Route path='/chat/:chatId' element = { <Chat /> } />
                         <Route path="/login" element={ <Login /> }/>
-                        <Route path="/profile" element={<Profil />} />
+                        <Route path="/profile/:userName" element={<Profil />} />
                         <Route path="/history/:userName" element={ <History /> }/>
+                        <Route path="*" element={ <NotFound /> } />
                     </Routes>
                 </main>
             </div>

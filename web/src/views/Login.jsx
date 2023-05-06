@@ -1,6 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/css/index.css";
 import TopLogin from "../components/Login/TopLogin";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const lastNameRef = useRef();
@@ -10,6 +12,8 @@ const Login = () => {
     const pwdRef = useRef();
     const resetPwd = useRef();
     const [loginMode, setLoginMode] = useState("Connexion");
+    const { userToken, userName } = useSelector(state => state.user);
+    const navigate = useNavigate();
 
     const titleSentence = {
         "Connection": "Connectez-vous à votre compte", 
@@ -25,6 +29,11 @@ const Login = () => {
         "Réinitialisation": "Connectez-vous !"
     }
 
+    useEffect(() => {
+        if(!!userToken) {
+            return navigate("/profile/" + userName); 
+        }
+    }, []);
 
     const formSubmit = (event) => {
         event.preventDefault();
@@ -33,7 +42,7 @@ const Login = () => {
 
     return (
         <>
-            <section class="login" onSubmit={formSubmit}>
+            <section className="login" onSubmit={formSubmit}>
                 <h2>{ loginMode }</h2>
                 <section>
                     <TopLogin />
