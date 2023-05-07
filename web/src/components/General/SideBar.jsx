@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"
 import "../../styles/css/index.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import appInformations from "../../../informations.json";
 import ListSelectChat from "../Chat/ListSelectChat";
+import SelectAnnounce from "../Announce/SelectAnnounce";
 
 const SideBar = (props) => {
     const { menuVisible } = useSelector(state => state.displayer)
@@ -21,7 +21,6 @@ const SideBar = (props) => {
         const fetcher = async () => {
             const res = await fetch(appInformations.urlAPI + endpoints[category]);
             const data = await res.json();
-            console.log(data);
             setInformations(data.list);
         }
         
@@ -31,6 +30,7 @@ const SideBar = (props) => {
     return (
         <section className={`sidebar ${(menuVisible ? 'sidebar-toggled' : '')}`}>
             {category == "Chat" && <ListSelectChat informations={informations} />}
+            {category == "Annonces" && <SelectAnnounce listAnnounce={informations} />}
         </section>
     )
 } 

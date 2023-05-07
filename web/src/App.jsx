@@ -10,6 +10,7 @@ import SideBar from "./components/General/SideBar";
 import { setupSocket } from "./Socket/Socket"
 import BannerAlert from "./components/General/BannerAlert"
 import NotFound from "./views/NotFound"
+import CreateAnnounce from "./views/CreateAnnounce"
 
 function App() {
     setupSocket();
@@ -26,7 +27,8 @@ function App() {
                         <Route path='/chat/:chatId' element = { <Chat /> } />
                         <Route path="/login" element={ <Login /> }/>
                         <Route path="/profile/:userName" element={<Profil />} />
-                        <Route path="/history/:userName" element={ <History /> }/>
+                        <Route path="/history/:idHistory" element={ <History /> } />
+                        <Route path="/createAnnounce" element={ <CreateAnnounce /> }></Route>
                         <Route path="*" element={ <NotFound /> } />
                     </Routes>
                 </main>
