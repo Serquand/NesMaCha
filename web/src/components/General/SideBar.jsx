@@ -5,7 +5,7 @@ import appInformations from "../../../informations.json";
 import ListSelectChat from "../Chat/ListSelectChat";
 import SelectAnnounce from "../Announce/SelectAnnounce";
 
-const SideBar = (props) => {
+const SideBar = () => {
     const { menuVisible } = useSelector(state => state.displayer)
     const [informations, setInformations] = useState([]);
     const { category } = useSelector(state => state.displayer)
@@ -35,4 +35,4 @@ const SideBar = (props) => {
     )
 } 
 
-export default SideBar
+export default SideBar;

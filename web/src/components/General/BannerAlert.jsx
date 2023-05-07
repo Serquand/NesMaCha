@@ -5,6 +5,8 @@ const BannerAlert = (props) => {
     const { duration, information } = props;
     const [isVisible, setIsVisible] = useState(true);
 
+    
+
     return (
         <div
             style={{ animationDelay: duration + "s" }} 
