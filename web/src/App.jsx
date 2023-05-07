@@ -7,20 +7,32 @@ import History from "./views/History"
 import FooterBar from "./components/General/FooterBar"
 import Chat from "./views/Chat"
 import SideBar from "./components/General/SideBar";
-import { setupSocket } from "./Socket/Socket"
+import { setupSocket, socket } from "./Socket/socket.ts";
 import BannerAlert from "./components/General/BannerAlert"
 import NotFound from "./views/NotFound"
 import CreateAnnounce from "./views/CreateAnnounce"
+import { useState } from "react"
 
 function App() {
-    setupSocket();
+    const [keyBannerAlert, setKeyBannerAlert] = useState(0);
     
+    setupSocket();    
+
+    socket.on("newMessage", (message) => {
+        setKeyBannerAlert(keyBannerAlert + 1);
+        console.log(message)
+    });
+
     return (
         <>
+            {!!keyBannerAlert && <BannerAlert 
+                duration={2} 
+                information="Ceci est un test" 
+                key={keyBannerAlert}
+            />}
             <div className="app-body">
                 <HeaderBar />
                 <SideBar />
-                {/* <BannerAlert duration={2} information="Ceci est un test" /> */}
                 <main>
                     <Routes>
                         <Route path="/" element={ <Home /> } />

@@ -3,8 +3,13 @@ import informations from "../../informations.json";
 
 let socket: Socket;
 
-const setupSocket: Function = () => {
+const setupSocket = () => {
     socket = io(informations.urlAPI as string);
 }
 
-export { setupSocket };
+const sendMessage: (message: string) => void = (message: string): void => {
+    console.log(message);
+    socket.emit("newMessage", message);
+}
+
+export { socket, setupSocket, sendMessage };

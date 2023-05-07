@@ -19,8 +19,6 @@ const FormSendMsg = (props) => {
                 className="chat-form-textarea" 
                 ref={messageRef}
                 placeholder="Entrez votre message..." 
-                cols={30}
-                rows={30}    
             ></textarea>
             <button 
                 type="submit"

@@ -4,6 +4,7 @@ import informations from "../../informations.json";
 import "../styles/css/index.css";
 import FormSendMsg from "../components/Chat/FormSendMsg";
 import Message from "../components/Chat/Message";
+import { sendMessage } from "../Socket/socket";
 
 const Chat = () => {
     const chatId = useParams().chatId;
@@ -22,6 +23,7 @@ const Chat = () => {
     
     const submitForm = (payload) => {
         console.log(payload);
+        sendMessage(payload)
     }
 
     return (
