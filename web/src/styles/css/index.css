@@ -16,6 +16,176 @@ a, a::after, a::before {
   color: black;
 }
 
+.not-found-main-container {
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(4, 4, 28);
+}
+
+.info {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.glitch-bloc {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.txt-info {
+  color: white;
+}
+
+.glitchedAnim,
+.invisible-text {
+  font-family: Unica One, sans-serif;
+  font-size: 250px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: white;
+}
+
+.glitchedAnim {
+  position: absolute;
+  top: 0;
+  opacity: 0.9;
+}
+
+.invisible-text {
+  visibility: hidden;
+}
+
+.glitchedAnim:nth-child(2) {
+  animation: skewAnim 3s infinite;
+}
+
+.glitchedAnim:nth-child(3) {
+  animation: glitchAnim2 3s infinite;
+}
+
+.glitchedAnim:nth-child(4) {
+  animation: glitchAnim1 3s infinite;
+}
+
+.txt-info {
+  font-family: Open Sans, sans-serif;
+  font-size: 20px;
+}
+
+@keyframes glitchAnim1 {
+  7% {
+    transform: none;
+  }
+  10% {
+    transform: translate(6px, -2px);
+  }
+  13% {
+    transform: none;
+  }
+  20% {
+    transform: none;
+  }
+  23% {
+    transform: translate(-12px, -7px);
+  }
+  26% {
+    transform: none;
+  }
+  40% {
+    transform: none;
+  }
+  43% {
+    transform: translate(10px, -9px);
+  }
+  46% {
+    transform: none;
+  }
+  65% {
+    transform: none;
+  }
+  68% {
+    transform: translate(7px, 5px);
+  }
+  71% {
+    transform: none;
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes glitchAnim2 {
+  7% {
+    transform: none;
+  }
+  10% {
+    transform: translate(-6px, 2px);
+  }
+  13% {
+    transform: none;
+  }
+  20% {
+    transform: none;
+  }
+  23% {
+    transform: translate(12px, 7px);
+  }
+  26% {
+    transform: none;
+  }
+  40% {
+    transform: none;
+  }
+  43% {
+    transform: translate(-10px, 9px);
+  }
+  46% {
+    transform: none;
+  }
+  65% {
+    transform: none;
+  }
+  68% {
+    transform: translate(-7px, 5px);
+  }
+  71% {
+    transform: none;
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes skewAnim {
+  20% {
+    transform: none;
+  }
+  23% {
+    transform: skew(5deg, -5deg) translate(10px, 5px);
+  }
+  26% {
+    transform: none;
+  }
+  40% {
+    transform: none;
+  }
+  43% {
+    transform: skew(5deg, -10deg) translate(-5px, 2px);
+  }
+  46% {
+    transform: none;
+  }
+  100% {
+    transform: none;
+  }
+}
 .modal {
   padding: 5px 0px 20px 0px !important;
   width: 280px;
@@ -94,7 +264,7 @@ a, a::after, a::before {
   height: 100%;
   z-index: 1499;
   transition: width 0.2s ease-out;
-  padding-top: 70px;
+  padding-top: 52px;
   overflow-x: hidden;
   color: white;
 }
@@ -183,16 +353,17 @@ a, a::after, a::before {
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  overflow-x: hidden;
+  color: white;
 }
 .select-chat-img {
-  width: 30px;
-  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
   border-radius: 50%;
   background-color: #555;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
   position: relative;
 }
 .select-chat-img-unseen {
@@ -209,6 +380,96 @@ a, a::after, a::before {
   justify-content: center;
   align-items: center;
   transform: translate(40%);
+}
+.select-chat-user {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.chat-form {
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  gap: 10px;
+  width: calc(100vw - 10px);
+  margin: auto;
+}
+.chat-form-textarea {
+  height: 30px;
+  width: calc(100vw - 50px);
+  border: 1px solid #555;
+  outline: none;
+  resize: none;
+  padding: 5px;
+}
+.chat-form-send {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: rgb(11, 11, 69);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chat-form-send img {
+  width: 20px;
+  height: 20px;
+}
+
+.banner-alert {
+  position: fixed;
+  top: 70px;
+  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000000000000000;
+  color: white;
+  text-align: center;
+  opacity: 1;
+  position: relative;
+  animation-name: disapearBannerAlert;
+  animation-timing-function: ease-out;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+}
+.banner-alert-shape {
+  padding: 15px 50px;
+  background-color: rgb(11, 11, 69);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 50%, 100% 100%, 0 100%, 30px 50%);
+}
+.banner-alert-shape p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.banner-alert-timer {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0px;
+  background-color: white;
+  left: 0;
+  right: 0;
+  animation-name: createTimerAnim;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes createTimerAnim {
+  to {
+    width: 0%;
+  }
+}
+@keyframes disapearBannerAlert {
+  to {
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

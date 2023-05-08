@@ -34,4 +34,4 @@ httpServer.listen(PORT, () => {
     console.log("We are listening on PORT", PORT);
 });
 
-io.on("connect", (socket) => setupSocket(socket));
+io.on("connect", (socket) => setupSocket(socket, io));

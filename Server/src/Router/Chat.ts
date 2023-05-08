@@ -14,6 +14,6 @@ const chatRouter = express.Router();
 chatRouter.post("/create", isAuth, isGoodUser, isValidCreation, chatAlreadyExist, createChat);
 chatRouter.get("/:idChat", isAuth, isGoodUser, chatExistence, getAllInformationsForChat);
 chatRouter.get("/list/:idUser", isAuth, isGoodUser, listChat);
-chatRouter.get("/:search", listAllUsers);
+chatRouter.get("/searchUser/:searched", listAllUsers);
 
 export default chatRouter;

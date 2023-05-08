@@ -1,5 +1,6 @@
+import { useState } from "react"
 import { Routes, Route } from "react-router-dom"
-import { setupSocket } from "./Socket/Socket"
+import { setupSocket, socket } from "./Socket/Socket.ts"
 
 import Home from "./views/Home"
 import Default from "./views/DefaultPage"
@@ -10,13 +11,27 @@ import Chat from "./views/Chat"
 import HeaderBar from "./components/General/HeaderBar"
 import FooterBar from "./components/General/FooterBar"
 import SideBar from "./components/General/SideBar";
-
+import BannerAlert from "./components/General/BannerAlert"
+import NotFound from "./views/NotFound"
+import CreateAnnounce from "./views/CreateAnnounce"
 
 function App() {
-    setupSocket();
+    const [keyBannerAlert, setKeyBannerAlert] = useState(0);
     
+    setupSocket();    
+
+    socket.on("newMessage", (message) => {
+        setKeyBannerAlert(keyBannerAlert + 1);
+        console.log(message)
+    });
+
     return (
         <>
+            {!!keyBannerAlert && <BannerAlert 
+                duration={2} 
+                information="Ceci est un test" 
+                key={keyBannerAlert}
+            />}
             <div className="app-body">
                 <HeaderBar />
 
@@ -27,8 +42,11 @@ function App() {
                         <Route path="/" element={ <Home /> } />
                         <Route path='/chat/:chatId' element = { <Chat /> } />
                         <Route path="/hello" element={ <Default /> }/>
-                        <Route path="/profile" element={<Profil />} />
-                        <Route path="/history/:userName" element={ <History /> }/>
+                        <Route path="/login" element={ <Login /> }/>
+                        <Route path="/profile/:userName" element={<Profil />} />
+                        <Route path="/history/:idHistory" element={ <History /> } />
+                        <Route path="/createAnnounce" element={ <CreateAnnounce /> }></Route>
+                        <Route path="*" element={ <NotFound /> } />
                     </Routes>
                 </main>
             </div>

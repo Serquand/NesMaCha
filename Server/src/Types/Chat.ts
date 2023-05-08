@@ -3,3 +3,9 @@ export type GroupChatInformations = {
     id: string; 
     unseenMessage: number;
 };
+
+export type MessageChat = {
+    contentMessage: string;
+    nameSender: string;
+    timeStampSubmit: string;
+}

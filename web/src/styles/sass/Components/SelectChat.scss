@@ -6,16 +6,17 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    overflow-x: hidden;
+    color: white;
 
     &-img {
-        width: 30px;
-        height: 30px;
+        min-width: 30px;
+        min-height: 30px;
         border-radius: 50%;
         background-color: #555;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
         position: relative;
 
         &-unseen {
@@ -33,5 +34,11 @@
             align-items: center;
             transform: translate(40%);
         }
+    }
+
+    &-user {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden; 
     }
 }

@@ -1,9 +1,14 @@
-import { Socket } from "socket.io";
+import { Server, Socket } from "socket.io";
 import checkJWT from "../Utils/JWT/CheckJWT";
 import { socketInit } from "../Utils/WebSocket/WebSocket";
 
-const setupSocket = (socket: Socket) => {
+const setupSocket = (socket: Socket, io: Server) => {
     console.log("A new user is connected !");
+
+    socket.on("newMessage", (message) => {
+        console.log("We've got a new message :", message);
+        io.emit("newMessage", message)
+    });
 
     socket.on("setupSession", information => {
         // If the auth is invalid, leave the process

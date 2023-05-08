@@ -4,15 +4,21 @@
 // Utils styles
 
 // Pages styles
+@import "./Pages/Chat.scss";
+@import "./Pages/NotFound.scss";
 
 // Layout styles
 @import "./Layouts/Modal.scss";
 @import "./Layouts/HeaderBar.scss";
 @import "./Layouts/SideBar.scss";
 @import "./Layouts/LeafletView.scss";
+@import "./Layouts/CreateAnnounce.scss";
+@import "./Layouts/SearchPlace.scss";
 
 // Components styles
 @import "./Components/Loader.scss";
 @import "./Components/CardToProfile.scss";
 @import "./Components/MenuHeader.scss";
 @import "./Components/SelectChat.scss";
+@import "./Components/FormSendMsg.scss";
+@import "./Components/BannerAlert.scss";
