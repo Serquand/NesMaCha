@@ -1,5 +1,5 @@
 import "../styles/css/index.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import TopLogin from "../components/Login/TopLogin";
 import Email from "../assets/email.png"
 import Password from "../assets/password.png";
@@ -7,7 +7,7 @@ import Tag from "../assets/tag.png";
 import Loader from "../components/General/Loader";
 import informations from "../../informations.json";
 import Modal from "../components/General/Modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../store/User";
 import { useNavigate } from "react-router-dom";
 
@@ -26,6 +26,11 @@ const LoginPage = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { userName } = useSelector(state => state.user);
+
+    useEffect(() => {
+        if(userName) navigate("/home")
+    }, [])
 
     const switchSentence = {
         "Connexion": "Aucun compte ? Inscrivez-vous !", 

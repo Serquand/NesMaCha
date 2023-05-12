@@ -7,7 +7,7 @@ const CardToProfil = () => {
     const { userName } = useSelector(state => state.user)
 
     return (
-        <Link to="/login">
+        <Link to="/profile">
             <div className="card-to-profile card">
                 <p className="card-to-profile-username">
                     { userName == "" ? "Connexion" : userName }

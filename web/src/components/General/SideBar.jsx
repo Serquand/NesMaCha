@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import appInformations from "../../../informations.json";
 import ListSelectChat from "../Chat/ListSelectChat";
 import SelectAnnounce from "../Announce/SelectAnnounce";
+import CreateChat from "../Chat/CreateChat";
 
 const SideBar = () => {
     const { menuVisible } = useSelector(state => state.displayer)
     const [informations, setInformations] = useState([]);
     const { category } = useSelector(state => state.displayer)
+
+    const [createChat, setCreateChat] = useState(false);
 
     const endpoints = {
         Chat: "/chat/list/1", 
@@ -28,10 +31,16 @@ const SideBar = () => {
     }, [category])
 
     return (
-        <section className={`sidebar ${(menuVisible ? 'sidebar-toggled' : '')}`}>
-            {category == "Chat" && <ListSelectChat informations={informations} />}
-            {category == "Annonces" && <SelectAnnounce listAnnounce={informations} />}
-        </section>
+        <div>
+            <section className={`sidebar ${(menuVisible ? 'sidebar-toggled' : '')}`}>
+                {category == "Chat" && <ListSelectChat 
+                    informations={informations} 
+                    startCreation={() => setCreateChat(true)}
+                />}
+                {category == "Annonces" && <SelectAnnounce listAnnounce={informations} />}
+            </section>
+            {createChat && <CreateChat endCreation={() => setCreateChat(false)} />}
+        </div>
     )
 } 
 

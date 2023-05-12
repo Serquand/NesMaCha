@@ -32,7 +32,7 @@ a, a::after, a::before {
   left: 50%;
   transform: translate(-50%, -50%);
   background: #fff;
-  padding: 20px 15px;
+  padding: 10px 0px;
 }
 .modal-content .modal-title-container {
   overflow: hidden;

@@ -33,7 +33,7 @@ const MenuHeader = () => {
         {
             img: Home, 
             categoryName: "Accueil", 
-            redirectTo: "/"
+            redirectTo: "/home"
         }
     ];
 
