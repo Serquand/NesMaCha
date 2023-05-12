@@ -16,7 +16,7 @@ const signIn : RequestHandler = async (req: Request, res: Response) => {
     });
 
     if(resDb == null) {
-        return res.status(400).json("Aucun compte n'a été trouvé !");
+        return res.status(400).json({information: "Aucun compte n'a été trouvé !"});
     }
 
     if(!await verify(resDb.dataValues.password, req.body.password)) {

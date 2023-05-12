@@ -4,7 +4,7 @@ import informations from "../../informations.json";
 import "../styles/css/index.css";
 import FormSendMsg from "../components/Chat/FormSendMsg";
 import Message from "../components/Chat/Message";
-import { sendMessage } from "../Socket/socket";
+import { sendMessage } from "../Socket/socket.ts";
 
 const Chat = () => {
     const chatId = useParams().chatId;

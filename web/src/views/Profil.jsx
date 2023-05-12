@@ -9,9 +9,8 @@ const Profil = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(!userToken);
         if(!userToken) {
-            return navigate("/login"); 
+            return navigate("/"); 
         }
     }, []);
 

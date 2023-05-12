@@ -20,8 +20,6 @@ const signUp: RequestHandler = async (req: Request, res: Response) => {
     // Création de l'utilisateur en db
     await User.create({
         email: req.body.email,
-        name: req.body.name,
-        lastName: req.body.lastName,
         password,
         tempPassword: tempCode,
         valid: false, 

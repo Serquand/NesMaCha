@@ -37,9 +37,9 @@ function App() {
 
                 <main>
                     <Routes>
-                        <Route path="/" element={ <Home /> } />
+                        <Route path="/" element={ <LogIn /> } />
                         <Route path='/chat/:chatId' element = { <Chat /> } />
-                        <Route path="/login" element={ <LogIn /> }/>
+                        <Route path="/home" element={ <Home /> }/>
                         <Route path="/profile/:userName" element={<Profil />} />
                         <Route path="/history/:idHistory" element={ <History /> } />
                         <Route path="/createAnnounce" element={ <CreateAnnounce /> }></Route>

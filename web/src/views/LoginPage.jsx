@@ -9,6 +9,7 @@ import informations from "../../informations.json";
 import Modal from "../components/General/Modal";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../store/User";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
     const emailRef = useRef();
@@ -20,6 +21,11 @@ const LoginPage = () => {
     const [informationsModal, setInformationsModal] = useState("");
     const [titleInformation, setTitleInformation] = useState("")
     const [showInformations, setShowInformations] = useState(false);
+    const [codeDisplayed, setCodeDisplayed] = useState("------");
+    const [pseudoSave, setPseudoSave] = useState("");
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const switchSentence = {
         "Connexion": "Aucun compte ? Inscrivez-vous !", 
@@ -32,24 +38,39 @@ const LoginPage = () => {
         "Réinitialisation": "Réinitialisation"
     };
 
-    const dispatch = useDispatch();
+    const checkCodeLength = (input) => {
+        if (input.length == 6) {
+            return setCodeDisplayed(input)
+        }
+        if (input.length == 7) {
+            return setCodeDisplayed(input.slice(0, 6));
+        }
+        return setCodeDisplayed(input.padEnd(6, "-"));
+    }
 
     const formSubmit = async (event) => {
         event.preventDefault();
         
         // Get the informations
         const email = emailRef.current?.value; 
-        const pseudo = pseudoRef.current?.value;
+        const pseudo = pseudoRef.current?.value ?? pseudoSave;
+        setPseudoSave(pseudo);
         const password = pwdRef.current?.value;
         const confirmPassword = resetPwdRef.current?.value;
+        const code = codeDisplayed;
 
         // Generate fetch params        
         const requestOptions = {
             method: "POST", 
             headers: { "Content-Type": "application/json" }, 
-            body: JSON.stringify({ email, pseudo, password, confirmPassword })
+            body: JSON.stringify({ email, pseudo, password, confirmPassword, code })
         };
-        const endpoint = loginMode == "Connexion" ? "signin" : loginMode == "Inscription" ? "signup" : 'retrieve';
+        
+        let endpoint;
+        if(loginMode == "Connexion") endpoint = "signin";
+        else if(loginMode == "Inscription") endpoint = "signup";
+        else if(loginMode == "Validation") endpoint = "validAccount";
+        else endpoint = 'retrieve';
 
         // Put the loader
         setLoading(true);
@@ -64,9 +85,13 @@ const LoginPage = () => {
         setLoading(false);
         setShowInformations(true);
 
-        // Set Login
-        if(res.status < 300) {
+        // Send validation of account
+        if(res.status == 201) return setLoginMode("Validation");
+
+        // If is successfully logged in
+        if(res.status == 200) {
             dispatch(setLogin({ userToken: data.token, userName: pseudo }))
+            navigate("/home");
         }
     }
 
@@ -75,7 +100,7 @@ const LoginPage = () => {
             <div className="connection-block">
                 <TopLogin mode={loginMode} />
 
-                {loginMode != "Connexion" && <div className="input-block">
+                {loginMode != "Connexion" && loginMode != "Validation" && <div className="input-block">
                     <div className="input-field">
                         <img src={Email} alt="email icon" />
                         <input 
@@ -87,7 +112,7 @@ const LoginPage = () => {
                     </div>
                 </div>}
 
-                {loginMode != "Réinitialisation" && <div className="input-field">
+                {loginMode != "Réinitialisation" && loginMode != "Validation" && <div className="input-field">
                     <img src={Tag} alt="Icone de nom d'utilisateur" />
                     <input 
                         id="username" 
@@ -97,7 +122,7 @@ const LoginPage = () => {
                     />
                 </div>}
                 
-                {loginMode != "Réinitialisation" && <>
+                {loginMode != "Réinitialisation" && loginMode != "Validation" && <>
                     <div className="input-field">
                         <img src={Password} alt="password icon" />
                         <input 
@@ -107,13 +132,13 @@ const LoginPage = () => {
                             ref={pwdRef}
                         />
                     </div>
-                    <p 
+                    {loginMode == 'Connexion' && <p 
                         style={{ margin: '-35px 0 0 0', cursor: "pointer", color: "#2F51AF" }}
                         onClick={() => setLoginMode("Réinitialisation")}
-                    >Mot de passe oublié ?</p>
+                    >Mot de passe oublié ?</p>}
                 </>}
 
-                {loginMode == "Inscription" && <div className="input-field">
+                {loginMode == "Inscription" && loginMode != "Validation" && <div className="input-field">
                     <img src={Password} alt="password icon" />
                     <input 
                         id="password" 
@@ -123,12 +148,26 @@ const LoginPage = () => {
                     />
                 </div>}
 
+                {loginMode == "Validation" && <label htmlFor="valid-code-input" className="valid-label">
+                <input 
+                    type="text" 
+                    id="valid-code-input"
+                    onInput={(event) => checkCodeLength(event.target.value)}
+                    className="input-login input-login-code"
+                />
+
+                <div className="information-check-container">
+                    {/* <p>{ codeDisplayed }</p> */}
+                    <button className="login-button">Vérifier le code</button>
+                </div>
+            </label>}
+
                 <button type="submit">{ buttonSwitchTitle[loginMode] }</button>
             </div>
-            <p 
+            {loginMode != "Validation" && <p 
                 onClick={() => setLoginMode(loginMode == "Connexion" ? "Inscription" : "Connexion")}
                 style={{ cursor: "pointer", color: "#2F51AF" }}
-            >{ switchSentence[loginMode] }</p>
+            >{ switchSentence[loginMode] }</p>}
 
             {loading && <Loader />}
             {showInformations && <Modal
