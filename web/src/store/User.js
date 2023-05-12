@@ -7,6 +7,7 @@ const userSlice = createSlice({
     initialState, 
     reducers: {
         setLogin: (state, payload) => {
+            console.log(payload);
             state.userToken = payload.payload.userToken;
             state.userName = payload.payload.userName;
         }
