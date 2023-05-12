@@ -1,5 +1,7 @@
 // Basis styles
-@import "./Basis/Reset.scss";
+@import "./Base/Reset.scss";
+@import "./Base/BasisStyles.scss";
+@import "./Base/BasicAnimation.scss";
 
 // Utils styles
 
@@ -14,6 +16,7 @@
 @import "./Layouts/LeafletView.scss";
 @import "./Layouts/CreateAnnounce.scss";
 @import "./Layouts/SearchPlace.scss";
+@import "./Layouts/Connection.scss";
 
 // Components styles
 @import "./Components/Loader.scss";

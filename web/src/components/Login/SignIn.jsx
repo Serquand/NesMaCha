@@ -1,5 +1,4 @@
 import "../../styles/css/index.css";
-import "../../styles/css/connection.css";
 import Logo from "../../assets/efrei_new-logo.png";
 import Email from "../../assets/email.png";
 import Tag from "../../assets/tag.png";
@@ -9,12 +8,6 @@ import Password from "../../assets/password.png";
 const LogIn = () => {
     return (
         <div className="connection-block">
-            <div className="connection-header">
-                <img src={Logo} alt="Logo de l'application" />
-                <span>Inscrivez vous</span>
-            </div>
-            
-
             <div className="input-block">
                 <div className="input-field">
                     <img src={Email} alt="Icone d'email" />

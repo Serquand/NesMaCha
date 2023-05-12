@@ -10,9 +10,6 @@ import userExists from "../../Utils/User/UserExists";
     - Password not null
     - Password and confirm password match
     - Pseudo not null
-
-    Extract : 
-    - First name and last name
 */
 const checkSignUp : RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     console.log("Test");
@@ -42,9 +39,6 @@ const checkSignUp : RequestHandler = async (req: Request, res: Response, next: N
     if(!mailEfreiCheck(req.body.email)) {
         return res.status(400).json("Vous devez vous inscrire avec votre adresse EFREI.");
     }
-
-    req.body.name = "Esteban";
-    req.body.lastName = "VINCENT";
 
     next();
 }

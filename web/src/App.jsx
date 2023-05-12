@@ -1,19 +1,17 @@
 import { useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import { setupSocket, socket } from "./Socket/Socket.ts"
-
 import Home from "./views/Home"
-import Default from "./views/DefaultPage"
+import LogIn from "./views/LoginPage.jsx"
 import Profil from "./views/Profil"
 import History from "./views/History"
 import Chat from "./views/Chat"
-
 import HeaderBar from "./components/General/HeaderBar"
 import FooterBar from "./components/General/FooterBar"
 import SideBar from "./components/General/SideBar";
 import BannerAlert from "./components/General/BannerAlert"
 import NotFound from "./views/NotFound"
-import CreateAnnounce from "./views/CreateAnnounce"
+import CreateAnnounce from "./views/CreateAnnounce";
 
 function App() {
     const [keyBannerAlert, setKeyBannerAlert] = useState(0);
@@ -27,7 +25,7 @@ function App() {
 
     return (
         <>
-            {!!keyBannerAlert && <BannerAlert 
+            { !!keyBannerAlert && <BannerAlert 
                 duration={2} 
                 information="Ceci est un test" 
                 key={keyBannerAlert}
@@ -41,8 +39,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={ <Home /> } />
                         <Route path='/chat/:chatId' element = { <Chat /> } />
-                        <Route path="/hello" element={ <Default /> }/>
-                        <Route path="/login" element={ <Login /> }/>
+                        <Route path="/login" element={ <LogIn /> }/>
                         <Route path="/profile/:userName" element={<Profil />} />
                         <Route path="/history/:idHistory" element={ <History /> } />
                         <Route path="/createAnnounce" element={ <CreateAnnounce /> }></Route>

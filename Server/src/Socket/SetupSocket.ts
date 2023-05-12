@@ -18,6 +18,14 @@ const setupSocket = (socket: Socket, io: Server) => {
         socketInit(information.user, socket);
 
         // Setup all the socket event
+        socket.on("newMessage", (payload) => {
+            // Need to check if the user is in the channel, if the user is logged in, if the channel exist, if the user is the good person
+            console.log(payload);
+            socket.broadcast.to(payload.channelId).emit("newMessage", {
+                channelId: payload.channelId, 
+                message: payload.message
+            })
+        });
     });
 } 
 

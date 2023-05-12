@@ -16,6 +16,6 @@ export const socketInit: (username: string, socket: Socket) => Promise<void> = a
     });
 
     for (const channel of channels) {
-        socket.join("room - " + channel.dataValues.idChannel);
+        socket.join(channel.dataValues.idChannel);
     }
 }

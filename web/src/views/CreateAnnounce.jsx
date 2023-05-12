@@ -44,17 +44,9 @@ const CreateAnnounce = () => {
                 onSubmit={submitCreation}
                 className="create-announce"
             >
-
+                
             </form>
             {loader && <Loader />}
-            {showInformationsModal && <Modal 
-                titleModal={titleInformationsModal}
-                nameButton="Fermer"
-                createAction={closeModal}
-                closeModal={closeModal}
-            >
-                <p>{informationModal}</p> 
-            </Modal>}
         </>
     )
 }
