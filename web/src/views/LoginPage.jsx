@@ -95,7 +95,6 @@ const LoginPage = () => {
 
         // If is successfully logged in
         if(res.status == 200) {
-            console.log(pseudo);
             dispatch(setLogin({ userToken: data.token, userName: pseudo }))
             navigate("/home");
         }

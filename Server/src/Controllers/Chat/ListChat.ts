@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { GroupChatInformations } from '../../Types/Chat';
+import Connection from '../../Models/Connection';
 
 const listChatInformations: Array<GroupChatInformations> = [
     {
@@ -27,12 +28,28 @@ const listChatInformations: Array<GroupChatInformations> = [
         name: "Baptiste LE CALLONNEC.", 
         unseenMessage: 5
     },
-]
+]   
 
-const ListChat = (req: Request, res: Response) => {
-    res.status(200).json({
-        list: listChatInformations
-    });
+const ListChat = async (req: Request, res: Response) => {
+    const resDB = (await Connection.query(`
+        SELECT c.name, c.idChannel FROM Channels AS c, UserChannels AS uc, Users AS u
+        WHERE 
+            u.pseudo = ? AND
+            uc.idUser = u.idUser AND
+            c.idChannel = uc.idChannel
+    `, { replacements: [req.params.idUser] }));
+
+    const list = new Array<GroupChatInformations>();
+
+    for(let i = 0; i < resDB[0].length; i++) {
+        list.push({
+            id: (resDB[0][i] as any).idChannel, 
+            unseenMessage: 0, 
+            name: (resDB[0][i] as any).name
+        });
+    }
+
+    res.status(200).json({ list });
 }
 
 export default ListChat;

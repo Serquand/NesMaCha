@@ -9,26 +9,29 @@ import CreateChat from "../Chat/CreateChat";
 const SideBar = () => {
     const { menuVisible } = useSelector(state => state.displayer)
     const [informations, setInformations] = useState([]);
-    const { category } = useSelector(state => state.displayer)
+    const { category } = useSelector(state => state.displayer);
+    const { userName } = useSelector(state => state.user);
 
     const [createChat, setCreateChat] = useState(false);
 
     const endpoints = {
-        Chat: "/chat/list/1", 
-        Annonces: "/chat/list/1", 
-        Demandes: "/chat/list/1",
-        Historiques: "/chat/list/1"
+        Chat: "/chat/list", 
+        Annonces: "/chat/list", 
+        Demandes: "/chat/list",
+        Historiques: "/chat/list"
     }
 
     useEffect(() => {
-        const fetcher = async () => {
-            const res = await fetch(appInformations.urlAPI + endpoints[category]);
-            const data = await res.json();
-            setInformations(data.list);
-        }
-        
-        fetcher();
-    }, [category])
+        (async () => {
+            try {
+                const res = await fetch(appInformations.urlAPI + endpoints[category] + "/" + userName);
+                const data = await res.json();
+                setInformations(data.list);
+            } catch {
+                setInformations([]);
+            }
+        })();
+    }, [category, userName])
 
     return (
         <div>
