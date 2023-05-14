@@ -33,6 +33,7 @@ const UserChannel = sequelize.define("UserChannel", {
     dateLastSeen: {
         type: DataTypes.INTEGER, 
         allowNull: false, 
+        defaultValue: 0
     }
 },{
     timestamps: false,

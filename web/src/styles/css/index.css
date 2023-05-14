@@ -420,6 +420,10 @@ a, a::after, a::before {
   font-size: 25px;
 }
 
+.creation-groupe {
+  color: #555555;
+}
+
 .loader {
   position: fixed;
   top: 0;
