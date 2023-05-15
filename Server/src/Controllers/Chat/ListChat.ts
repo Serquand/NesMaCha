@@ -31,6 +31,8 @@ const listChatInformations: Array<GroupChatInformations> = [
 ]   
 
 const ListChat = async (req: Request, res: Response) => {
+    if(!req.params.idUser) return res.status(400).json("Need a valid access");
+    
     const resDB = (await Connection.query(`
         SELECT c.name, c.idChannel FROM Channels AS c, UserChannels AS uc, Users AS u
         WHERE 

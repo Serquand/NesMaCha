@@ -12,7 +12,7 @@ const Chat = () => {
 
     useEffect(() => {
         const getMessages = async () => {
-            const res = await fetch(informations.urlAPI + "/chat/" + chatId);
+            const res = await fetch(informations.urlAPI + "/chat/messages/" + chatId);
             const data = await res.json();
             console.log(data);
             setMessages(data);

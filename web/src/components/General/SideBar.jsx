@@ -25,6 +25,7 @@ const SideBar = () => {
         (async () => {
             try {
                 const res = await fetch(appInformations.urlAPI + endpoints[category] + "/" + userName);
+                if(!res.ok) return setInformations([]);
                 const data = await res.json();
                 setInformations(data.list);
             } catch {
