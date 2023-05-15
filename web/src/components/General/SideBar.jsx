@@ -7,12 +7,12 @@ import SelectAnnounce from "../Announce/SelectAnnounce";
 import CreateChat from "../Chat/CreateChat";
 
 const SideBar = () => {
-    const { menuVisible } = useSelector(state => state.displayer)
     const [informations, setInformations] = useState([]);
     const { category } = useSelector(state => state.displayer);
     const { userName } = useSelector(state => state.user);
 
     const [createChat, setCreateChat] = useState(false);
+    const [isVisibled, setIsVisible] = useState(false);
 
     const endpoints = {
         Chat: "/chat/list", 
@@ -32,17 +32,19 @@ const SideBar = () => {
                 setInformations([]);
             }
         })();
+
+        setIsVisible(!!userName)
     }, [category, userName])
 
     return (
         <div>
-            <section className={`sidebar ${(menuVisible ? 'sidebar-toggled' : '')}`}>
+            {isVisibled && <section className="sidebar">
                 {category == "Chat" && <ListSelectChat 
                     informations={informations} 
                     startCreation={() => setCreateChat(true)}
                 />}
                 {category == "Annonces" && <SelectAnnounce listAnnounce={informations} />}
-            </section>
+            </section>}
             {createChat && <CreateChat endCreation={() => setCreateChat(false)} />}
         </div>
     )

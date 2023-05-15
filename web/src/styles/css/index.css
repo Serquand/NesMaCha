@@ -295,12 +295,9 @@ a, a::after, a::before {
   bottom: 0;
   height: 100%;
   z-index: 1499;
-  transition: width 0.2s ease-out;
   padding-top: 52px;
   overflow-x: hidden;
   color: white;
-}
-.sidebar-toggled {
   width: 16em;
 }
 
