@@ -7,6 +7,7 @@ const displayerSlice = createSlice({
     initialState, 
     reducers: {
         switchCategory: (state, newCategory) => {
+            if(newCategory.payload == "Accueil") return;
             state.category = newCategory.payload;
         }
     }
