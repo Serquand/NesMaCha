@@ -5,43 +5,41 @@ import createChannel from "../Utils/Chat/CreateChannel";
 import getIdOfEveryone from "../Utils/Chat/GetIdOfEveryone";
 import addUserInChannel from "../Utils/Chat/AddUserInChannel";
 import addEveryoneToChannel from "../Utils/Chat/AddEveryoneToChannel";
+import UserNotInChannel from "../Utils/Chat/UserNotInChannel";
+import channelExist from "../Utils/Chat/ChannelExist";
 
 const setupSocket = (socket: Socket, io: Server) => {
     console.log("A new user is connected !");
 
-    socket.on("newMessage", (message) => {
-        console.log("We've got a new message :", message);
-        io.emit("newMessage", message)
-    });    
+    socket.on("setupSession", async information => {
+        if(!checkJWT(information.user, information.token)) return; // If the auth is invalid, leave the process
 
-    socket.on("setupSession", information => {
-        // If the auth is invalid, leave the process
-        if(!checkJWT(information.user, information.token)) return;
+        await socketInit(information.user, socket); // Init the socket by joining all the rooms
 
-        // Init the socket by joining all the rooms
-        socketInit(information.user, socket);
-
-        // Setup all the socket event
-        socket.on("newMessage", (payload) => {
-            // Need to check if the user is in the channel, if the user is logged in, if the channel exist, if the user is the good person
-            console.log(payload);
-            socket.broadcast.to(payload.channelId).emit("newMessage", {
+        socket.on("newMessage", async (payload) => {
+            if(!await channelExist(payload.channelId)) return; // Check if the channel exists
+            if(await UserNotInChannel(information.user, payload.channelId)) return; // Check if the user is in the channel
+            socket.broadcast.to("channel - " + payload.channelId).emit("newInformation", { 
                 channelId: payload.channelId, 
-                message: payload.message
+                information: payload.message, 
+                type: "newMessage"
             })
         });
 
         socket.on("newGroupe", async (payload) => {
-            if(payload.listUsername.length == 0) return; // Check if the group is empty or not
-            if(await allUsersDontExist(payload.listUsername)) return; // Check if all user successfully exist
-            const everyoneId = await getIdOfEveryone([...payload.listUsername, information.user]); // Get the ID of all users
+            if(payload.listUsername.length == 0) return; 
+            if(await allUsersDontExist(payload.listUsername)) return; 
+            const everyoneId = await getIdOfEveryone([...payload.listUsername, information.user]); 
             const idChannel = await createChannel(payload, information.user); // Add the group in the database
             addUserInChannel(everyoneId, idChannel); // Add all the users in the database
             await addEveryoneToChannel(everyoneId, "channel - " + idChannel, io); // Add to the socket's channel the different user
             
-            // Send the creation information
             const messageInformation = "Vous avez été ajouté au groupe : " + payload.groupName;
-            io.to("channel - " + idChannel).emit("newInformation", messageInformation);
+            io.to("channel - " + idChannel).emit("newInformation", { 
+                information: messageInformation, 
+                type: "newGroup", 
+                idChannel 
+            });
         });
     });
 } 

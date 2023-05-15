@@ -23,7 +23,7 @@ const Chat = () => {
     
     const submitForm = (payload) => {
         console.log(payload);
-        sendMessage(payload)
+        sendMessage(payload, chatId)
     }
 
     return (

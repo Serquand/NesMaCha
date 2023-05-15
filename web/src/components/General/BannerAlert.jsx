@@ -6,7 +6,9 @@ const BannerAlert = (props) => {
     const { duration, information } = props;
     const [informationAlert, setInformationAlert] = useState("");
 
-    socket.on("newInformation", information => setInformationAlert(information));
+    socket.on("newInformation", information => {
+        setInformationAlert(information.information)
+    });
 
     return (
         <>
