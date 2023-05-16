@@ -49,7 +49,8 @@ a, a::after, a::before {
   }
 }
 .chat {
-  max-width: calc(100vw - 17em);
+  padding-left: 255px;
+  padding-top: 52px;
   margin-left: auto;
   position: relative;
 }
@@ -282,6 +283,7 @@ a, a::after, a::before {
   position: fixed;
   background-color: rgb(11, 11, 69);
   z-index: 1500;
+  height: 52px;
 }
 .header-content {
   margin: auto;
@@ -304,7 +306,7 @@ a, a::after, a::before {
   padding-top: 52px;
   overflow-x: hidden;
   color: white;
-  width: 16em;
+  width: 255px;
 }
 
 .markercluster-map {
@@ -540,7 +542,8 @@ a, a::after, a::before {
   right: 0;
   bottom: 10px;
   gap: 10px;
-  width: calc(100vw - 10px);
+  padding-left: 260px;
+  padding-right: 5px;
   margin: auto;
 }
 .chat-form-textarea {
@@ -552,7 +555,7 @@ a, a::after, a::before {
   padding: 5px;
 }
 .chat-form-send {
-  width: 30px;
+  width: 40px;
   height: 30px;
   border-radius: 10px;
   border: none;
@@ -616,6 +619,46 @@ a, a::after, a::before {
   to {
     opacity: 0;
   }
+}
+.message {
+  margin-bottom: 10px;
+  max-width: 60%;
+  width: fit-content;
+  margin-left: 10px;
+}
+.message-body {
+  display: flex;
+  flex-direction: column;
+  background-color: #ddd;
+  padding: 10px;
+  width: 100%;
+}
+.message-our {
+  margin-left: auto;
+  margin-right: 10px;
+}
+.message-sender {
+  font-variant: small-caps;
+  font-size: 17px;
+}
+.message-content {
+  padding: 5px 30px 10px 5px;
+}
+.message-hour {
+  text-align: right;
+  font-size: 13px;
+}
+
+.who-is-received {
+  width: 100%;
+  background-color: rgb(12, 12, 125);
+  padding: 10px;
+  color: white;
+  margin-bottom: 15px;
+}
+.who-is-received-name {
+  font-size: 20px;
+  font-weight: 500;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -5,17 +5,21 @@ import "../styles/css/index.css";
 import FormSendMsg from "../components/Chat/FormSendMsg";
 import Message from "../components/Chat/Message";
 import { sendMessage } from "../Socket/socket.ts";
+import WhoIsReceived from "../components/Chat/WhoIsReceived";
 
 const Chat = () => {
     const chatId = useParams().chatId;
     const [messages, setMessages] = useState([]);
+    const [channelName, setChannelName] = useState("");
+    const [listUserInChannel, setListUserInChannel] = useState([]);
 
     useEffect(() => {
         const getMessages = async () => {
             const res = await fetch(informations.urlAPI + "/chat/messages/" + chatId);
             const data = await res.json();
-            console.log("La liste des messages est", data);
-            setMessages(data);
+            setMessages(data.listMessages);
+            setChannelName(data.nameChannel);
+            setListUserInChannel(data.listUserInChannel);
         }
 
         getMessages()
@@ -29,12 +33,20 @@ const Chat = () => {
     return (
         <>
             <div  style={{height: "100vh"}} className="chat">
+                <WhoIsReceived 
+                    nameGroup={channelName} 
+                    listPerson={listUserInChannel}
+                />
+
                 {/* Liste des messages */}
                 <div className="messages">
-                    {messages.map((message, index) => <Message 
-                        key={index}
-                        informations={message}
-                    />)}
+                    {messages.map((message, index) => 
+                    <>
+                        <Message 
+                            key={index}
+                            informations={message} 
+                        />
+                    </>)}
                 </div>
 
                 {/* Formulaire pour envoyer un nouveau message */}
