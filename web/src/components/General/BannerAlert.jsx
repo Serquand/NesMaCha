@@ -3,7 +3,7 @@ import "../../styles/css/index.css";
 import { socket } from "../../Socket/socket";
 
 const BannerAlert = (props) => {
-    const { duration, information } = props;
+    const { duration } = props;
     const [informationAlert, setInformationAlert] = useState("");
 
     socket.on("newInformation", information => {
@@ -11,7 +11,7 @@ const BannerAlert = (props) => {
     });
 
     return (
-        <>
+        <div className="banner">
             {informationAlert !== "" && <div
                 style={{ animationDelay: duration + "s" }} 
                 className="banner-alert"
@@ -26,7 +26,7 @@ const BannerAlert = (props) => {
                     className="banner-alert-timer"
                 ></div>
             </div>}
-        </>
+        </div>
     )
 }
 

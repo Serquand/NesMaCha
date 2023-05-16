@@ -284,6 +284,7 @@ a, a::after, a::before {
   background-color: rgb(11, 11, 69);
   z-index: 1500;
   height: 52px;
+  top: 0px;
 }
 .header-content {
   margin: auto;
@@ -570,13 +571,16 @@ a, a::after, a::before {
   height: 20px;
 }
 
-.banner-alert {
+.banner {
   position: fixed;
   top: 70px;
-  width: 300px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10000000000000000;
+}
+
+.banner-alert {
+  width: 300px;
   color: white;
   text-align: center;
   opacity: 1;

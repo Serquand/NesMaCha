@@ -1,10 +1,13 @@
-.banner-alert {
+.banner {
     position: fixed;
     top: 70px;
-    width: 300px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10000000000000000;
+    z-index: 10000000000000000;     
+}
+
+.banner-alert {
+    width: 300px;
     color: white;
     text-align: center;
     opacity: 1;

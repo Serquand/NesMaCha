@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom"
-import { setupSocket } from "./Socket/socket"
 import Home from "./views/Home"
 import LogIn from "./views/LoginPage.jsx"
 import Profil from "./views/Profil"
@@ -11,13 +10,14 @@ import SideBar from "./components/General/SideBar";
 import BannerAlert from "./components/General/BannerAlert"
 import NotFound from "./views/NotFound"
 import CreateAnnounce from "./views/CreateAnnounce";
+import { useSelector } from "react-redux"
 
 function App() {
-    setupSocket();    
+    const { userToken } = useSelector(state => state.user);
 
     return (
         <>
-            <BannerAlert duration={2} />
+            {userToken && <BannerAlert duration={2} />}
             <div className="app-body">
                 <HeaderBar />
 
