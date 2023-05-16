@@ -31,7 +31,12 @@ const setupSocket = (socket: Socket, io: Server) => {
                 content: payload.message
             })
 
-            socket.broadcast.to("channel - " + payload.channelId).emit("newInformation", { 
+            io.to("channel - " + payload.channelId).emit("newInformation", { 
+                newMessage: {
+                    pseudo: information.user,
+                    content: payload.message,
+                    dateMessage: Date.now()
+                },
                 channelId: payload.channelId, 
                 information: payload.message, 
                 type: "newMessage"
@@ -50,7 +55,11 @@ const setupSocket = (socket: Socket, io: Server) => {
             io.to("channel - " + idChannel).emit("newInformation", { 
                 information: messageInformation, 
                 type: "newGroup", 
-                idChannel 
+                newChannel: {
+                    id: idChannel, 
+                    unseenMessage: 0, 
+                    name: payload.groupName
+                }
             });
         });
     });

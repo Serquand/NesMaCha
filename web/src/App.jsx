@@ -20,9 +20,7 @@ function App() {
             {userToken && <BannerAlert duration={2} />}
             <div className="app-body">
                 <HeaderBar />
-
-                <SideBar />
-
+                {userToken && <SideBar />}
                 <main>
                     <Routes>
                         <Route path="/" element={ <LogIn /> } />

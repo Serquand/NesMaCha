@@ -7,7 +7,7 @@ const Message = (props) => {
     const { userName } = useSelector(state => state.user);
 
     const dateMessage = new Date(parseInt(informations.dateMessage));
-    const dateString = dateMessage.getHours() + ":" + dateMessage.getMinutes();
+    const dateString = dateMessage.getHours().toString().padStart(2, 0) + ":" + dateMessage.getMinutes().toString().padStart(2, 0);
 
     return (
         <>
@@ -18,7 +18,7 @@ const Message = (props) => {
                     )}
                     <p className="message-content">{ informations.content }</p>
                 </div>
-                <p className="message-hour">{  dateString }</p>
+                <p className="message-hour">{ dateString }</p>
             </article>
         </>
     );

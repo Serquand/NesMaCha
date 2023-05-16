@@ -5,6 +5,7 @@ import appInformations from "../../../informations.json";
 import ListSelectChat from "../Chat/ListSelectChat";
 import SelectAnnounce from "../Announce/SelectAnnounce";
 import CreateChat from "../Chat/CreateChat";
+import { socket } from "../../Socket/socket";
 
 const SideBar = () => {
     const [informations, setInformations] = useState([]);
@@ -20,6 +21,12 @@ const SideBar = () => {
         Demandes: "/chat/list",
         Historiques: "/chat/list"
     }
+
+    socket?.on("newInformation", (payload) => {
+        if(payload.type == "newGroup" && category == "Chat") {
+            setInformations([...informations, payload.newChannel])
+        }
+    })
 
     useEffect(() => {
         (async () => {

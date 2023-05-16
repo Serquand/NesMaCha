@@ -6,6 +6,7 @@ import FormSendMsg from "../components/Chat/FormSendMsg";
 import Message from "../components/Chat/Message";
 import { sendMessage } from "../Socket/socket.ts";
 import WhoIsReceived from "../components/Chat/WhoIsReceived";
+import { socket } from "../Socket/socket.ts";
 
 const Chat = () => {
     const chatId = useParams().chatId;
@@ -25,8 +26,13 @@ const Chat = () => {
         getMessages()
     }, []);
     
+    socket?.on("newInformation", (payload) => {
+        if(payload.type == "newMessage" && payload.channelId == chatId) {
+            setMessages([...messages, payload.newMessage]);
+        }
+    })
+
     const submitForm = (payload) => {
-        console.log(payload);
         sendMessage(payload, chatId)
     }
 
