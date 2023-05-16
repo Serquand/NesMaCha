@@ -48,6 +48,12 @@ a, a::after, a::before {
     transform: translate(0);
   }
 }
+.chat {
+  max-width: calc(100vw - 17em);
+  margin-left: auto;
+  position: relative;
+}
+
 .not-found-main-container {
   z-index: 0;
   position: fixed;

@@ -2,12 +2,7 @@ import User from "../../Models/User";
 import UserChannel from "../../Models/UserChannel";
 import { Op } from "sequelize";
 
-const UserNotInChannel: (username: string, channelId: number) => Promise<boolean> = async (username: string, channelId: number): Promise<boolean> => {
-    const userId = (await User.findOne({
-        where: { pseudo: username }, 
-        attributes: ["idUser"]
-    }))?.dataValues.idUser;
-
+const UserNotInChannel: (userId: string, channelId: number) => Promise<boolean> = async (userId: string, channelId: number): Promise<boolean> => {
     if(userId == null) return true;
 
     const channel = await UserChannel.findOne({

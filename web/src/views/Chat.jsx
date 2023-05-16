@@ -28,7 +28,7 @@ const Chat = () => {
 
     return (
         <>
-            <div className="chat">
+            <div  style={{height: "100vh"}} className="chat">
                 {/* Liste des messages */}
                 <div className="messages">
                     {messages.map((message, index) => <Message 

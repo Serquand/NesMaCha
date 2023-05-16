@@ -7,6 +7,8 @@ import addUserInChannel from "../Utils/Chat/AddUserInChannel";
 import addEveryoneToChannel from "../Utils/Chat/AddEveryoneToChannel";
 import UserNotInChannel from "../Utils/Chat/UserNotInChannel";
 import channelExist from "../Utils/Chat/ChannelExist";
+import Message from "../Models/Message";
+import getUserIdFromPseudo from "../Utils/User/GetUserIdFromPseudo";
 
 const setupSocket = (socket: Socket, io: Server) => {
     console.log("A new user is connected !");
@@ -18,7 +20,17 @@ const setupSocket = (socket: Socket, io: Server) => {
 
         socket.on("newMessage", async (payload) => {
             if(!await channelExist(payload.channelId)) return; // Check if the channel exists
-            if(await UserNotInChannel(information.user, payload.channelId)) return; // Check if the user is in the channel
+            
+            const userId = await getUserIdFromPseudo(information.user);
+            if(await UserNotInChannel(userId, payload.channelId)) return; // Check if the user is in the channel
+            
+            await Message.create({
+                sender: userId,
+                dateMessage: Date.now(),
+                channel: payload.channelId,
+                content: payload.message
+            })
+
             socket.broadcast.to("channel - " + payload.channelId).emit("newInformation", { 
                 channelId: payload.channelId, 
                 information: payload.message, 
