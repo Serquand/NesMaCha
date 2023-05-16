@@ -1,12 +1,20 @@
 import { useState } from "react";
 import "../../styles/css/index.css";
 import { socket } from "../../Socket/socket";
+import {useSelector} from 'react-redux';
+import { useLocation } from "react-router-dom";
 
 const BannerAlert = (props) => {
     const { duration } = props;
     const [informationAlert, setInformationAlert] = useState("");
+    const { userName } = useSelector(state => state.user);
+    const location = useLocation();
+
+    console.log(location);
 
     socket.on("newInformation", information => {
+        if(information.type == "newGroup" && userName == information.owner) return;
+        if(information.type == "newChat" && location.pathname == "/chat/" + information.channelId) return;
         setInformationAlert(information.information)
     });
 

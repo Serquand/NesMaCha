@@ -7,12 +7,15 @@ import Message from "../components/Chat/Message";
 import { sendMessage } from "../Socket/socket.ts";
 import WhoIsReceived from "../components/Chat/WhoIsReceived";
 import { socket } from "../Socket/socket.ts";
+import { useLocation } from "react-router-dom";
 
 const Chat = () => {
     const chatId = useParams().chatId;
     const [messages, setMessages] = useState([]);
     const [channelName, setChannelName] = useState("");
     const [listUserInChannel, setListUserInChannel] = useState([]);
+
+    const location = useLocation();
 
     useEffect(() => {
         const getMessages = async () => {
@@ -24,7 +27,7 @@ const Chat = () => {
         }
 
         getMessages()
-    }, []);
+    }, [location]);
     
     socket?.on("newInformation", (payload) => {
         if(payload.type == "newMessage" && payload.channelId == chatId) {

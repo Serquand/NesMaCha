@@ -59,7 +59,8 @@ const setupSocket = (socket: Socket, io: Server) => {
                     id: idChannel, 
                     unseenMessage: 0, 
                     name: payload.groupName
-                }
+                }, 
+                owner: information.user
             });
         });
     });
