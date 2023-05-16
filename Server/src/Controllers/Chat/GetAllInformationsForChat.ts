@@ -1,25 +1,16 @@
 import { Request, Response } from 'express'
+import Connection from '../../Models/Connection';
 
-const informations = [
-    {
-        contentMessage: "Contenu du message", 
-        nameSender: 'Lucario', 
-        timeStampSubmit: "111"
-    }, 
-    {
-        contentMessage: "Contenu du message 2", 
-        nameSender: 'Lucario 2', 
-        timeStampSubmit: "1111"
-    },
-    {
-        contentMessage: "Contenu du message 3", 
-        nameSender: 'Lucario 3', 
-        timeStampSubmit: "11111"
-    } 
-]
+const GetAllInformationsForChat = async (req: Request, res: Response) => {    
+    const listMessages = (await Connection.query(`
+        SELECT u.pseudo, m.content, m.dateMessage
+        FROM Users AS u, Messages AS m
+        WHERE
+            m.channel = ? AND
+            u.idUser = m.sender;
+    `, { replacements: [req.params.idChat] }))[0];
 
-const GetAllInformationsForChat = (req: Request, res: Response) => {
-    return res.status(200).json(informations);
+    return res.status(200).json(listMessages);
 }
 
 export default GetAllInformationsForChat;

@@ -14,7 +14,7 @@ const Chat = () => {
         const getMessages = async () => {
             const res = await fetch(informations.urlAPI + "/chat/messages/" + chatId);
             const data = await res.json();
-            console.log(data);
+            console.log("La liste des messages est", data);
             setMessages(data);
         }
 

@@ -6,7 +6,9 @@ const Message = (props) => {
     console.log(informations);
 
     return (
-        <></>
+        <>
+            
+        </>
     );
 }
 
