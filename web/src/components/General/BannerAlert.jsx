@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../../styles/css/index.css";
 import { socket } from "../../Socket/socket";
 import {useSelector} from 'react-redux';
-import { useLocation } from "react-router-dom";
 
 const BannerAlert = (props) => {
     const { duration } = props;
