@@ -18,6 +18,12 @@ const Chat = () => {
     const location = useLocation();
 
     useEffect(() => {
+        if(!userToken) {
+            return navigate("/"); 
+        }
+    }, []);
+
+    useEffect(() => {
         const getMessages = async () => {
             const res = await fetch(informations.urlAPI + "/chat/messages/" + chatId);
             const data = await res.json();

@@ -1,6 +1,11 @@
 import "../styles/css/index.css";
 
 const NotFound = () => {
+    useEffect(() => {
+        if(!userToken) {
+            return navigate("/"); 
+        }
+    }, []);
 
     return (
         <main className="not-found-main-container">

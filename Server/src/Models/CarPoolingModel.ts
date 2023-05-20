@@ -50,11 +50,13 @@ const CarPoolingModel = sequelize.define("CarPooling", {
     currentPassenger: {
         type: DataTypes.INTEGER,
         allowNull: false, 
+        defaultValue: 0
     },
 
     status: {
         type: DataTypes.STRING,
         allowNull: false, 
+        defaultValue: "Incoming"
     }
 }, {
     timestamps: false
