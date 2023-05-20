@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import "../styles/css/index.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
+    const navigate = useNavigate();
+    
+    const { userToken } = useSelector(state => state.user);
     useEffect(() => {
         if(!userToken) {
             return navigate("/"); 

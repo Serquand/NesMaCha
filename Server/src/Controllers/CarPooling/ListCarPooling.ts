@@ -7,7 +7,15 @@ const ListCarPooling = async (req: Request, res: Response) => {
     const ourCarPoolings = new Array<CarPooling>();
     const otherCarPoolings = new Array<CarPooling>();
     const tempCarPoolings = (await Connection.query(`
-        SELECT u.pseudo AS driver, cp.from, cp.to, cp.dateDeparture, cp.maxPassenger AS maxPlace, cp.currentPassenger, cp.status
+        SELECT 
+            u.pseudo AS driver, 
+            cp.from, 
+            cp.to, 
+            cp.dateDeparture, 
+            cp.maxPassenger AS maxPlace, 
+            cp.currentPassenger, 
+            cp.status,
+            cp.idCarPooling 
         FROM Users AS u, CarPoolings AS cp
         WHERE 
             cp.status = "Incoming" AND 
@@ -18,7 +26,7 @@ const ListCarPooling = async (req: Request, res: Response) => {
     for(let i = 0; i < tempCarPoolings.length; i++) {
         const from = (allAdress.filter(value => value.dataValues.idAdress == tempCarPoolings[i].from))[0].dataValues;
         const to = (allAdress.filter(value => value.dataValues.idAdress == tempCarPoolings[i].to))[0].dataValues;
-        const infoCarPoolings = {
+        const infoCarPoolings: CarPooling = {
             dateDeparture: tempCarPoolings[i].dateDeparture,
             driver: tempCarPoolings[i].driver, 
             from: {
@@ -31,6 +39,7 @@ const ListCarPooling = async (req: Request, res: Response) => {
                 y:  to.yCoordinate
             },
             currentPassenger: tempCarPoolings[i].currentPassenger,
+            idCarPooling: tempCarPoolings[i].idCarPooling
         }
 
         if(tempCarPoolings[i].driver == req.params.pseudo) { 
@@ -41,7 +50,12 @@ const ListCarPooling = async (req: Request, res: Response) => {
         }
     }
 
-    return res.status(200).json({ ourCarPoolings, otherCarPoolings });
+    return res.status(200).json({ 
+        list: {
+            ourCarPoolings, 
+            otherCarPoolings 
+        }
+    });
 }   
 
 export default ListCarPooling;

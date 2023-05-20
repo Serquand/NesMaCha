@@ -552,6 +552,15 @@ a, a::after, a::before {
   justify-content: center;
   position: relative;
 }
+.select-chat-img-content {
+  display: flex;
+  place-items: center;
+}
+.select-chat-img-content img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
 .select-chat-img-unseen {
   font-size: 10px;
   position: absolute;
@@ -721,6 +730,15 @@ a, a::after, a::before {
 }
 .create-chat-add-member-state-selected {
   background-color: #222;
+}
+
+.announce-choice {
+  cursor: pointer;
+}
+.announce-choice-places {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 /*# sourceMappingURL=index.css.map */

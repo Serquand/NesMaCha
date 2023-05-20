@@ -15,7 +15,7 @@ const ListSelectChat = (props) => {
             <div onClick={startCreation}>
                 <SelectChat informations={createInformations} />
             </div>
-            {informations.map((information, index) => (
+            {Array.isArray(informations) && informations?.map((information, index) => (
                 <li key={index}>
                     <SelectChat informations={information} />
                 </li>

@@ -17,7 +17,7 @@ const SideBar = () => {
 
     const endpoints = {
         Chat: "/chat/list", 
-        Annonces: "/chat/list", 
+        Annonces: "/carPooling/list", 
         Demandes: "/chat/list",
         Historiques: "/chat/list"
     }
