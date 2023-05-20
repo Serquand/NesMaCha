@@ -7,7 +7,12 @@ const Message = (props) => {
     const { userName } = useSelector(state => state.user);
 
     const dateMessage = new Date(parseInt(informations.dateMessage));
-    const dateString = dateMessage.getHours().toString().padStart(2, 0) + ":" + dateMessage.getMinutes().toString().padStart(2, 0);
+    let dateString = 
+        dateMessage.getDate().toString().padStart(2, 0) + "/" +
+        dateMessage.getMonth().toString().padStart(2, 0) + "/" +
+        dateMessage.getFullYear() + " - " +
+        dateMessage.getHours().toString().padStart(2, 0) + ":" + 
+        dateMessage.getMinutes().toString().padStart(2, 0);
 
     return (
         <>

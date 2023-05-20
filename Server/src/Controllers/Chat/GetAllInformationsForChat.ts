@@ -8,7 +8,8 @@ const GetAllInformationsForChat = async (req: Request, res: Response) => {
         FROM Users AS u, Messages AS m
         WHERE
             m.channel = ? AND
-            u.idUser = m.sender;
+            u.idUser = m.sender
+        ORDER BY m.dateMessage ASC;
     `, { replacements: [req.params.idChat] }))[0];
 
     const nameChannel = (await Channel.findOne({
