@@ -1,0 +1,24 @@
+.create-chat-add-member {
+    display: flex;
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+
+
+    &-state {
+        padding: 1px;
+        border: 1px solid black;
+    
+        &-info {
+            width: 7px;
+            padding: 7px;
+        }
+
+        &-selected {
+            background-color: #222;
+        }
+    }
+}

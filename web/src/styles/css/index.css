@@ -428,6 +428,43 @@ a, a::after, a::before {
 
 .creation-groupe {
   color: #555555;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.creation-groupe-block {
+  display: flex;
+  flex-direction: column;
+}
+.creation-groupe-block input {
+  width: 275px;
+  height: 30px;
+  border: 1px solid rgb(4, 4, 28);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  outline: none;
+  padding: 0 5px;
+}
+.creation-groupe h4 {
+  font-size: 16px;
+  font-weight: normal;
+}
+.creation-groupe .member-search-input-container {
+  position: relative;
+}
+.creation-groupe .member-search-input-container button {
+  background-color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.creation-groupe .member-search-input-container img {
+  width: 15px;
+  height: 15px;
 }
 
 .loader {
@@ -663,6 +700,27 @@ a, a::after, a::before {
 .who-is-received-name {
   font-size: 20px;
   font-weight: 500;
+}
+
+.create-chat-add-member {
+  display: flex;
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+  width: 90%;
+}
+.create-chat-add-member-state {
+  padding: 1px;
+  border: 1px solid black;
+}
+.create-chat-add-member-state-info {
+  width: 7px;
+  padding: 7px;
+}
+.create-chat-add-member-state-selected {
+  background-color: #222;
 }
 
 /*# sourceMappingURL=index.css.map */
