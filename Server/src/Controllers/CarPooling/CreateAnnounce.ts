@@ -10,8 +10,8 @@ const CreateAnnounce = async (req: Request, res: Response) => {
     }))?.dataValues.idUser;
 
     if(driver == null) {
-        return res.status(200).json({
-            information: "Le nouveau covoiturage a été créé avec succès !"
+        return res.status(400).json({
+            information: "Woooops... Something went wrong !"
         });
     }
 
