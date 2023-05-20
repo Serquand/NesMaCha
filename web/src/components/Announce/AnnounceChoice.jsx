@@ -26,9 +26,10 @@ const AnnounceChoice = (props) => {
             onClick={goToTheAnnouncementView}
         >
             <h5 className="announce-choice-places">
-                {informations.from.diplay}<br />-&gt;<br />{informations.to.diplay}
+                {informations.from.diplay}<br />-<br />{informations.to.diplay}
             </h5>
-            <p>
+            <div className="announce-choice-separator"></div>
+            <p className="announce-choice-info">
                 <span>{dateDisplayed}</span> |&nbsp;
                 <span>{informations.maxPlace}/{informations.currentPassenger}</span>
             </p>

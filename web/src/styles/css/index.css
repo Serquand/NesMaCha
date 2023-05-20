@@ -733,12 +733,25 @@ a, a::after, a::before {
 }
 
 .announce-choice {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid white;
   cursor: pointer;
+  text-align: center;
 }
 .announce-choice-places {
-  text-align: center;
   font-size: 15px;
   font-weight: 500;
+  margin: auto;
+}
+.announce-choice-info {
+  font-size: 12px;
+}
+.announce-choice-separator {
+  width: 50px;
+  height: 1px;
+  background-color: white;
+  margin: 8px auto;
 }
 
 /*# sourceMappingURL=index.css.map */

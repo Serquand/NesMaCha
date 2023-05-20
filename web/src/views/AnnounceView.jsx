@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const AnnounceView = () => {
     const navigate = useNavigate();
     const idAnnouce = useParams().idAnnounce;
-    console.log(idAnnouce);
     const [info, setInfo] = useState({});
 
     const { userToken } = useSelector(state => state.user);
