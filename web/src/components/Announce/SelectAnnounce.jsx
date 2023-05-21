@@ -1,9 +1,13 @@
+// --------------- Libraries import ---------------
+
+// --------------- Components import ---------------
 import AnnounceChoice from "./AnnounceChoice";
 import CreateAnnounceChoice from "./CreateAnnounceChoice";
 import Home from "../../assets/home.png";
 import Others from "../../assets/Annonces.png";
 import SelectChat from "../Chat/SelectChat";
 import { useEffect, useState } from "react";
+
 
 const SelectAnnounce = (props) => {
     const { listAnnounce } = props;
@@ -52,7 +56,7 @@ const SelectAnnounce = (props) => {
     return (
         <section>
             {/* Création de l'annonce */}
-            <CreateAnnounceChoice />
+            <CreateAnnounceChoice/>
 
             {/* Liste nos annonces */}
             {listAnnounce.ourCarPoolings?.length ? (<>

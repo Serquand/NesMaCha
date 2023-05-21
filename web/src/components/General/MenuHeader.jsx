@@ -20,7 +20,8 @@ const MenuHeader = () => {
         },
         {
             img: Annonces, 
-            categoryName: "Annonces"
+            categoryName: "Annonces",
+            redirectTo: "/announce"
         },
         {
             img: Demandes, 

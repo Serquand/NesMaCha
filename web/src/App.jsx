@@ -4,14 +4,17 @@ import LogIn from "./views/LoginPage.jsx"
 import Profil from "./views/Profil"
 import History from "./views/History"
 import Chat from "./views/Chat"
+import NotFound from "./views/NotFound"
+import Announce from "./views/Announce";
+import AnnounceView from "./views/AnnounceView"
+
 import HeaderBar from "./components/General/HeaderBar"
 import FooterBar from "./components/General/FooterBar"
 import SideBar from "./components/General/SideBar";
 import BannerAlert from "./components/General/BannerAlert"
-import NotFound from "./views/NotFound"
-import CreateAnnounce from "./views/CreateAnnounce";
+
 import { useSelector } from "react-redux";
-import AnnounceView from "./views/AnnounceView"
+
 
 function App() {
     const { userToken } = useSelector(state => state.user);
@@ -29,7 +32,7 @@ function App() {
                         <Route path="/home" element={ <Home /> }/>
                         <Route path="/profile" element={<Profil />} />
                         <Route path="/history/:idHistory" element={ <History /> } />
-                        <Route path="/createAnnounce" element={ <CreateAnnounce /> }></Route>
+                        <Route path="/announce" element={ <Announce /> }></Route>
                         <Route path="/announce/:idAnnounce" element={<AnnounceView />}></Route>
                         <Route path="*" element={ <NotFound /> } />
                     </Routes>

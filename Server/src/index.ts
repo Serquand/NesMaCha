@@ -9,10 +9,12 @@ import cron from "node-cron";
 
 import userRouter from "./Router/User";
 import carPooling from "./Router/CarPooling";
-import setup from "./Models/Setup";
-import setupSocket from "./Socket/SetupSocket";
 import chatRouter from "./Router/Chat";
 import updateToDone from "./Utils/CarPooling/UpdateToDone";
+
+import setup from "./Models/Setup";
+import setupSocket from "./Socket/SetupSocket";
+
 
 const app = express();
 const httpServer = createServer(app);

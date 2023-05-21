@@ -36,6 +36,7 @@
     "@types/node-cron": "^3.0.7",
     "@types/nodemailer": "^6.4.6",
     "@types/uuid": "^9.0.0",
+    "sass": "^1.62.1",
     "ts-node": "^10.9.1"
   }
 }

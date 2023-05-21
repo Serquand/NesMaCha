@@ -10,10 +10,10 @@ import SelectAsk from "../Ask/SelectAsk";
 import SelectHistory from "../Announce/SelectHistory";
 
 const SideBar = () => {
-    const [informations, setInformations] = useState([]);
     const { category } = useSelector(state => state.displayer);
     const { userName } = useSelector(state => state.user);
 
+    const [informations, setInformations] = useState([]);
     const [createChat, setCreateChat] = useState(false);
     const [isVisibled, setIsVisible] = useState(false);
 
@@ -53,6 +53,7 @@ const SideBar = () => {
                 {category == "Demandes" && <SelectAsk listAsk={informations} />}
                 {category == "Historique" && <SelectHistory history={informations} />}
             </section>}
+
             {createChat && <CreateChat endCreation={() => setCreateChat(false)} />}
         </div>
     )
