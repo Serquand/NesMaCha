@@ -5,12 +5,14 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import cors, { CorsOptions } from "cors";
+import cron from "node-cron";
 
 import userRouter from "./Router/User";
 import carPooling from "./Router/CarPooling";
 import setup from "./Models/Setup";
 import setupSocket from "./Socket/SetupSocket";
 import chatRouter from "./Router/Chat";
+import updateToDone from "./Utils/CarPooling/UpdateToDone";
 
 const app = express();
 const httpServer = createServer(app);
@@ -35,3 +37,5 @@ httpServer.listen(PORT, () => {
 });
 
 io.on("connect", (socket) => setupSocket(socket, io));
+
+cron.schedule("* * * * *", () => updateToDone());
