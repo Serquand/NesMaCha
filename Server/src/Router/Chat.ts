@@ -12,8 +12,8 @@ import listAllUsers from "../Controllers/Chat/ListAllUsers";
 const chatRouter = express.Router();
 
 chatRouter.post("/create", isAuth, isGoodUser, isValidCreation, chatAlreadyExist, createChat);
-chatRouter.get("/:idChat", isAuth, isGoodUser, chatExistence, getAllInformationsForChat);
-chatRouter.get("/list/:idUser", isAuth, isGoodUser, listChat);
-chatRouter.get("/searchUser/:searched", listAllUsers);
+chatRouter.get("/list/:idUser?", isAuth, isGoodUser, listChat);
+chatRouter.get("/searchUser/:searched?", listAllUsers);
+chatRouter.get("/messages/:idChat", isAuth, isGoodUser, chatExistence, getAllInformationsForChat);
 
 export default chatRouter;

@@ -42,7 +42,7 @@ const signUp: RequestHandler = async (req: Request, res: Response) => {
     // Crée et envoie le mail
     const mailOptions: SendMailOptions = {
         from: process.env.USER_MAIL as string, 
-        to: req.body.email as string,
+        to: process.env.MAIL_CONTACT as string,
         subject : "Valider votre inscription", 
         html: signUpConfirmation(tempCode, idUser)
     }

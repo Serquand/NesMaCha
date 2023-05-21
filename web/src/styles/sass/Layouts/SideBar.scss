@@ -6,12 +6,8 @@
     bottom: 0;
     height: 100%;
     z-index: 1499;
-    transition: width .2s ease-out;
     padding-top: 52px;
     overflow-x: hidden;
     color: white;
-    
-    &-toggled {
-        width: 16em;
-    }
+    width: 255px;
 }

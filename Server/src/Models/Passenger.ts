@@ -24,6 +24,12 @@ const Passenger = sequelize.define("Passenger", {
             model: CarPoolingModel, 
             key: "idCarPooling"
         }
+    },
+
+    passengerValidate: {
+        type: DataTypes.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: false
     }
 }, {
     timestamps: false

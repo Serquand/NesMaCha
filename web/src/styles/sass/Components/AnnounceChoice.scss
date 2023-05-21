@@ -1,0 +1,110 @@
+.announce-choice {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+
+    &-places {
+        font-size: 15px;
+        font-weight: 500;
+        margin: auto;
+    }
+
+    &-info {
+        font-size: 12px;
+    }
+
+    &-separator {
+        width: 50px;
+        height: 1px;
+        background-color: white;
+        margin: 8px auto;
+    }
+
+    &-apply {
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 30px;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(150, 150, 150, 0.7);
+        cursor: pointer;
+        transition: all 0.4s ease-out;
+        opacity: 0;
+        transition: all 0.4s ease-out;
+        
+        &-visible {
+            opacity: 1;
+        }
+
+        &:hover {
+            background-color: rgba(75, 75, 75, 1);
+        }
+
+        &-img {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+    }
+
+    &-applier {
+        position: relative;
+        z-index: 10;
+        &-choice {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+
+            button {
+                outline: none;
+                border: none;
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: transparent;
+                 
+                div {
+                    height: 16px;
+                    width: 16px;
+                }
+            }
+
+            > :first-child {
+                border: 1px solid rgb(17, 162, 17);
+
+                div {
+                    background-color: rgb(17, 162, 17);
+                }
+            }
+
+            > :nth-child(2) {    
+                border: 1px solid red;
+                
+                div {
+                    background-color: red;
+                }
+            }
+
+            > :last-child {   
+                img {
+                    width: 15px;
+                    height: 15px;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}

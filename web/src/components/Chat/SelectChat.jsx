@@ -17,16 +17,16 @@ const SelectChat = (props) => {
             >
                 <div className="select-chat-img">
                     <p className="select-chat-img-content">
-                        {informations.image ?? informations.name.charAt(0).toUpperCase()}
+                        {informations?.image ?? informations?.name ? informations?.name.charAt(0).toUpperCase() : ''}
                     </p>
-                    {informations.unseenMessage != 0 && (
+                    {informations?.unseenMessage != 0 && (
                         <p className="select-chat-img-unseen">
-                            {informations.unseenMessage > 9 ? "9+" : informations.unseenMessage}
+                            {informations?.unseenMessage > 9 ? "9+" : informations?.unseenMessage}
                         </p>
                     )}
                 </div>
                 <div className="select-chat-user">
-                    <p>{informations.name}</p>
+                    <p>{informations?.name}</p>
                 </div>
             </article>
         </div>

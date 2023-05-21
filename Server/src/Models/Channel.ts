@@ -11,11 +11,6 @@ const Channel = sequelize.define("Channel", {
         unique: true
     },
 
-    type: {
-        type: DataTypes.STRING(10),
-        allowNull: false, 
-    },
-
     name: {
         type: DataTypes.STRING(50),
         allowNull: false

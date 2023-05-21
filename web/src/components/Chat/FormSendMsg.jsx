@@ -8,6 +8,7 @@ const FormSendMsg = (props) => {
     const sendMsg = (event) => {
         event.preventDefault();
         newMessage(messageRef.current.value);
+        messageRef.current.value = '';
     }   
 
     return (

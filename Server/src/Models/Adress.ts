@@ -16,22 +16,7 @@ const Adress = sequelize.define("Adress", {
     yCoordinate: {
         type: DataTypes.FLOAT,
         allowNull: false,    
-    },
-
-    name: {
-        type: DataTypes.STRING, 
-        allowNull: false, 
-    },
-
-    city: {
-        type: DataTypes.STRING, 
-        allowNull: false, 
-    },
-
-    zipCode: {
-        type: DataTypes.INTEGER, 
-        allowNull: false, 
-    },
+    }
 }, {
     timestamps: false
 })

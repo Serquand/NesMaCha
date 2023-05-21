@@ -1,40 +1,30 @@
-import { useState } from "react"
 import { Routes, Route } from "react-router-dom"
-import { setupSocket, socket } from "./Socket/Socket.ts"
 import Home from "./views/Home"
 import LogIn from "./views/LoginPage.jsx"
 import Profil from "./views/Profil"
 import History from "./views/History"
 import Chat from "./views/Chat"
+import NotFound from "./views/NotFound"
+import Announce from "./views/Announce";
+import AnnounceView from "./views/AnnounceView"
+
 import HeaderBar from "./components/General/HeaderBar"
 import FooterBar from "./components/General/FooterBar"
 import SideBar from "./components/General/SideBar";
 import BannerAlert from "./components/General/BannerAlert"
-import NotFound from "./views/NotFound"
-import Announce from "./views/Announce";
+
+import { useSelector } from "react-redux";
+
 
 function App() {
-    const [keyBannerAlert, setKeyBannerAlert] = useState(0);
-    
-    setupSocket();    
-
-    socket.on("newMessage", (message) => {
-        setKeyBannerAlert(keyBannerAlert + 1);
-        console.log(message)
-    });
+    const { userToken } = useSelector(state => state.user);
 
     return (
         <>
-            { !!keyBannerAlert && <BannerAlert 
-                duration={2} 
-                information="Ceci est un test" 
-                key={keyBannerAlert}
-            />}
+            {userToken && <BannerAlert duration={2} />}
             <div className="app-body">
                 <HeaderBar />
-
-                <SideBar />
-
+                {userToken && <SideBar />}
                 <main>
                     <Routes>
                         <Route path="/" element={ <LogIn /> } />
@@ -43,6 +33,7 @@ function App() {
                         <Route path="/profile" element={<Profil />} />
                         <Route path="/history/:idHistory" element={ <History /> } />
                         <Route path="/announce" element={ <Announce /> }></Route>
+                        <Route path="/announce/:idAnnounce" element={<AnnounceView />}></Route>
                         <Route path="*" element={ <NotFound /> } />
                     </Routes>
                 </main>

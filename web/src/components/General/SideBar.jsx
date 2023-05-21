@@ -5,45 +5,55 @@ import appInformations from "../../../informations.json";
 import ListSelectChat from "../Chat/ListSelectChat";
 import SelectAnnounce from "../Announce/SelectAnnounce";
 import CreateChat from "../Chat/CreateChat";
+import { socket } from "../../Socket/socket";
+import SelectAsk from "../Ask/SelectAsk";
+import SelectHistory from "../Announce/SelectHistory";
 
 const SideBar = () => {
-    const { menuVisible } = useSelector(state => state.displayer)
-    const [informations, setInformations] = useState([]);
-    const { category } = useSelector(state => state.displayer)
+    const { category } = useSelector(state => state.displayer);
+    const { userName } = useSelector(state => state.user);
 
+    const [informations, setInformations] = useState([]);
     const [createChat, setCreateChat] = useState(false);
-    const [createAnnounce, setCreateAnnounce] = useState(false);
+    const [isVisibled, setIsVisible] = useState(false);
 
     const endpoints = {
-        Chat: "/chat/list/1", 
-        Annonces: "/chat/list/1", 
-        Demandes: "/chat/list/1",
-        Historiques: "/chat/list/1"
+        Chat: "/chat/list", 
+        Annonces: "/carPooling/list", 
+        Demandes: "/carPooling/ask/list",
+        Historique: "/carPooling/history"
     }
 
-    useEffect(() => {
-        const fetcher = async () => {
-            const res = await fetch(appInformations.urlAPI + endpoints[category]);
-            const data = await res.json();
-            setInformations(data.list);
+    socket?.on("newInformation", (payload) => {
+        if(payload.type == "newGroup" && category == "Chat") {
+            setInformations([...informations, payload.newChannel])
         }
-        
-        fetcher();
-    }, [category])
+    })
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const res = await fetch(appInformations.urlAPI + endpoints[category] + "/" + userName);
+                if(!res.ok) return setInformations([]);
+                const data = await res.json();
+                console.log(data);
+                setInformations(data.list);
+            } catch {
+                setInformations([]);
+            }
+        })();
+
+        setIsVisible(!!userName)
+    }, [category, userName])
 
     return (
         <div>
-            <section className={`sidebar ${(menuVisible ? 'sidebar-toggled' : '')}`}>
-                {category == "Chat" && <ListSelectChat 
-                    informations={informations} 
-                    startCreation={() => setCreateChat(true)}
-                    endCreation={() => setCreateChat(false)}
-                />}
-
-                {category == "Annonces" && <SelectAnnounce 
-                    listAnnounce={informations}
-                />}
-            </section>
+            {isVisibled && <section className="sidebar">
+                {category == "Chat" && <ListSelectChat informations={informations} startCreation={() => setCreateChat(true)} />}
+                {category == "Annonces" && <SelectAnnounce listAnnounce={informations} />}
+                {category == "Demandes" && <SelectAsk listAsk={informations} />}
+                {category == "Historique" && <SelectHistory history={informations} />}
+            </section>}
 
             {createChat && <CreateChat endCreation={() => setCreateChat(false)} />}
         </div>

@@ -48,6 +48,13 @@ a, a::after, a::before {
     transform: translate(0);
   }
 }
+.chat {
+  padding-left: 255px;
+  padding-top: 52px;
+  margin-left: auto;
+  position: relative;
+}
+
 .not-found-main-container {
   z-index: 0;
   position: fixed;
@@ -277,6 +284,8 @@ a, a::after, a::before {
   position: fixed;
   background-color: rgb(11, 11, 69);
   z-index: 1500;
+  height: 52px;
+  top: 0px;
 }
 .header-content {
   margin: auto;
@@ -296,13 +305,10 @@ a, a::after, a::before {
   bottom: 0;
   height: 100%;
   z-index: 1499;
-  transition: width 0.2s ease-out;
   padding-top: 52px;
   overflow-x: hidden;
   color: white;
-}
-.sidebar-toggled {
-  width: 16em;
+  width: 255px;
 }
 
 .markercluster-map {
@@ -416,6 +422,47 @@ a, a::after, a::before {
   font-size: 25px;
 }
 
+.creation-groupe {
+  color: #555555;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.creation-groupe-block {
+  display: flex;
+  flex-direction: column;
+}
+.creation-groupe-block input {
+  width: 275px;
+  height: 30px;
+  border: 1px solid rgb(4, 4, 28);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  outline: none;
+  padding: 0 5px;
+}
+.creation-groupe h4 {
+  font-size: 16px;
+  font-weight: normal;
+}
+.creation-groupe .member-search-input-container {
+  position: relative;
+}
+.creation-groupe .member-search-input-container button {
+  background-color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.creation-groupe .member-search-input-container img {
+  width: 15px;
+  height: 15px;
+}
+
 .loader {
   position: fixed;
   top: 0;
@@ -502,6 +549,15 @@ a, a::after, a::before {
   justify-content: center;
   position: relative;
 }
+.select-chat-img-content {
+  display: flex;
+  place-items: center;
+}
+.select-chat-img-content img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
 .select-chat-img-unseen {
   font-size: 10px;
   position: absolute;
@@ -530,7 +586,8 @@ a, a::after, a::before {
   right: 0;
   bottom: 10px;
   gap: 10px;
-  width: calc(100vw - 10px);
+  padding-left: 260px;
+  padding-right: 5px;
   margin: auto;
 }
 .chat-form-textarea {
@@ -542,7 +599,7 @@ a, a::after, a::before {
   padding: 5px;
 }
 .chat-form-send {
-  width: 30px;
+  width: 40px;
   height: 30px;
   border-radius: 10px;
   border: none;
@@ -557,13 +614,16 @@ a, a::after, a::before {
   height: 20px;
 }
 
-.banner-alert {
+.banner {
   position: fixed;
   top: 70px;
-  width: 300px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10000000000000000;
+}
+
+.banner-alert {
+  width: 300px;
   color: white;
   text-align: center;
   opacity: 1;
@@ -608,6 +668,7 @@ a, a::after, a::before {
     opacity: 0;
   }
 }
+
 .announce-body {
   position: absolute;
   display: flex;
@@ -620,6 +681,162 @@ a, a::after, a::before {
   justify-content: center;
   align-items: center;
   background-color: aqua;
+}
+
+.message {
+  margin-bottom: 10px;
+  max-width: 60%;
+  width: fit-content;
+  margin-left: 10px;
+}
+.message-body {
+  display: flex;
+  flex-direction: column;
+  background-color: #ddd;
+  padding: 10px;
+  width: 100%;
+}
+.message-our {
+  margin-left: auto;
+  margin-right: 10px;
+}
+.message-sender {
+  font-variant: small-caps;
+  font-size: 17px;
+}
+.message-content {
+  padding: 5px 30px 10px 5px;
+}
+.message-hour {
+  text-align: right;
+  font-size: 13px;
+}
+
+.who-is-received {
+  width: 100%;
+  background-color: rgb(12, 12, 125);
+  padding: 10px;
+  color: white;
+  margin-bottom: 15px;
+}
+.who-is-received-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.create-chat-add-member {
+  display: flex;
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+  width: 90%;
+}
+.create-chat-add-member-state {
+  padding: 1px;
+  border: 1px solid black;
+}
+.create-chat-add-member-state-info {
+  width: 7px;
+  padding: 7px;
+}
+.create-chat-add-member-state-selected {
+  background-color: #222;
+}
+
+.announce-choice {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
+.announce-choice-places {
+  font-size: 15px;
+  font-weight: 500;
+  margin: auto;
+}
+.announce-choice-info {
+  font-size: 12px;
+}
+.announce-choice-separator {
+  width: 50px;
+  height: 1px;
+  background-color: white;
+  margin: 8px auto;
+}
+.announce-choice-apply {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 30px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(150, 150, 150, 0.7);
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  opacity: 0;
+  transition: all 0.4s ease-out;
+}
+.announce-choice-apply-visible {
+  opacity: 1;
+}
+.announce-choice-apply:hover {
+  background-color: rgb(75, 75, 75);
+}
+.announce-choice-apply-img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+.announce-choice-applier {
+  position: relative;
+  z-index: 10;
+}
+.announce-choice-applier-choice {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.announce-choice-applier-choice button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+.announce-choice-applier-choice button div {
+  height: 16px;
+  width: 16px;
+}
+.announce-choice-applier-choice > :first-child {
+  border: 1px solid rgb(17, 162, 17);
+}
+.announce-choice-applier-choice > :first-child div {
+  background-color: rgb(17, 162, 17);
+}
+.announce-choice-applier-choice > :nth-child(2) {
+  border: 1px solid red;
+}
+.announce-choice-applier-choice > :nth-child(2) div {
+  background-color: red;
+}
+.announce-choice-applier-choice > :last-child img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
 }
 
 .create-announce {

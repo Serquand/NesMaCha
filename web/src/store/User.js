@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setupSession, setupSocket } from "../Socket/socket";
 
 const initialState = { userName: "", userToken: "" };
 
@@ -7,9 +8,10 @@ const userSlice = createSlice({
     initialState, 
     reducers: {
         setLogin: (state, payload) => {
-            console.log(payload);
             state.userToken = payload.payload.userToken;
             state.userName = payload.payload.userName;
+            setupSocket();
+            setupSession(state.userName, state.userToken);
         }
     }
 });

@@ -18,6 +18,7 @@
 @import "./Layouts/SearchPlace.scss";
 @import "./Layouts/Connection.scss";
 @import "./Layouts/ValidateMailCode.scss";
+@import './Layouts/CreateGroup.scss';
 
 // Components styles
 @import "./Components/Loader.scss";
@@ -26,4 +27,8 @@
 @import "./Components/SelectChat.scss";
 @import "./Components/FormSendMsg.scss";
 @import "./Components/BannerAlert.scss";
-@import "./Components/AnnounceCreation.scss";
+@import "./Components/Announce.scss";
+@import './Components/Messages.scss';
+@import "./Components/WhoIsReceived.scss";
+@import "./Components/CreateChatMember.scss";
+@import './Components/AnnounceChoice.scss';
