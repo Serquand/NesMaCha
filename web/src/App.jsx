@@ -11,7 +11,7 @@ import FooterBar from "./components/General/FooterBar"
 import SideBar from "./components/General/SideBar";
 import BannerAlert from "./components/General/BannerAlert"
 import NotFound from "./views/NotFound"
-import CreateAnnounce from "./views/CreateAnnounce";
+import Announce from "./views/Announce";
 
 function App() {
     const [keyBannerAlert, setKeyBannerAlert] = useState(0);
@@ -42,7 +42,7 @@ function App() {
                         <Route path="/home" element={ <Home /> }/>
                         <Route path="/profile" element={<Profil />} />
                         <Route path="/history/:idHistory" element={ <History /> } />
-                        <Route path="/createAnnounce" element={ <CreateAnnounce /> }></Route>
+                        <Route path="/announce" element={ <Announce /> }></Route>
                         <Route path="*" element={ <NotFound /> } />
                     </Routes>
                 </main>

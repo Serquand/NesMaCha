@@ -8,9 +8,11 @@ import cors, { CorsOptions } from "cors";
 
 import userRouter from "./Router/User";
 import carPooling from "./Router/CarPooling";
+import chatRouter from "./Router/Chat";
+
 import setup from "./Models/Setup";
 import setupSocket from "./Socket/SetupSocket";
-import chatRouter from "./Router/Chat";
+
 
 const app = express();
 const httpServer = createServer(app);

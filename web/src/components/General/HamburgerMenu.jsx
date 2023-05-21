@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../../store/Displayer"
 
+
 const HamburgerMenu = () => {
     const dispatch = useDispatch();
 
+    
     return (
         <>
             <svg 

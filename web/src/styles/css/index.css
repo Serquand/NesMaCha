@@ -28,7 +28,7 @@ a, a::after, a::before {
   background-color: rgba(20, 20, 20, 0.7);
 }
 .modal-content {
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #fff;
@@ -259,6 +259,7 @@ a, a::after, a::before {
 
 #icon {
   width: 60px;
+  height: -moz-fit-content;
   height: fit-content;
 }
 #icon path {
@@ -329,6 +330,7 @@ a, a::after, a::before {
 .connection-block {
   display: flex;
   width: 350px;
+  height: -moz-fit-content;
   height: fit-content;
   padding: 30px 15px;
   border-radius: 15px;
@@ -341,7 +343,9 @@ a, a::after, a::before {
 
 .connection-header {
   display: flex;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   flex-direction: column;
   align-items: center;
@@ -352,22 +356,14 @@ a, a::after, a::before {
   height: 50px;
 }
 
-.input-block {
-  display: flex;
-  width: fit-content;
-  height: fit-content;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 20px;
-}
-
 .input-field {
   display: flex;
-  width: 270px;
+  /*flex-basis: 270px;*/
   padding: 7px 10px;
   border-radius: 10px;
   flex-direction: row;
-  column-gap: 10px;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
   background-color: #A0A0A0;
 }
 
@@ -476,7 +472,8 @@ a, a::after, a::before {
 .menu-header-element img {
   width: 25px;
   height: 25px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .menu-header-element:last-child {
   border-left: 2px solid white;
@@ -579,7 +576,8 @@ a, a::after, a::before {
 .banner-alert-shape {
   padding: 15px 50px;
   background-color: rgb(11, 11, 69);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 50%, 100% 100%, 0 100%, 30px 50%);
+  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 50%, 100% 100%, 0 100%, 30px 50%);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 50%, 100% 100%, 0 100%, 30px 50%);
 }
 .banner-alert-shape p {
   text-overflow: ellipsis;
@@ -610,5 +608,28 @@ a, a::after, a::before {
     opacity: 0;
   }
 }
+.announce-body {
+  position: absolute;
+  display: flex;
+  width: calc(100% - 16em);
+  height: 100%;
+  top: 0;
+  right: 0;
+  padding-top: 51px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+}
 
-/*# sourceMappingURL=index.css.map */
+.create-announce {
+  display: flex;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 25px;
+}/*# sourceMappingURL=index.css.map */

@@ -12,6 +12,7 @@ const SideBar = () => {
     const { category } = useSelector(state => state.displayer)
 
     const [createChat, setCreateChat] = useState(false);
+    const [createAnnounce, setCreateAnnounce] = useState(false);
 
     const endpoints = {
         Chat: "/chat/list/1", 
@@ -36,9 +37,14 @@ const SideBar = () => {
                 {category == "Chat" && <ListSelectChat 
                     informations={informations} 
                     startCreation={() => setCreateChat(true)}
+                    endCreation={() => setCreateChat(false)}
                 />}
-                {category == "Annonces" && <SelectAnnounce listAnnounce={informations} />}
+
+                {category == "Annonces" && <SelectAnnounce 
+                    listAnnounce={informations}
+                />}
             </section>
+
             {createChat && <CreateChat endCreation={() => setCreateChat(false)} />}
         </div>
     )

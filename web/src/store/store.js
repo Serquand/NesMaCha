@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import displayer from "./Displayer";
+
 import user from "./User";
+import displayer from "./Displayer";
+import announce from "./Announce";
+
 
 export const store = configureStore({
     reducer: { 
         user: user, 
-        displayer: displayer, 
+        displayer: displayer,
+        announce: announce
     }
 });
