@@ -1,8 +1,14 @@
 import "../../styles/css/index.css";
 import { useNavigate } from "react-router-dom";
+import informationsSite from "../../../informations.json";
+import { useSelector } from "react-redux";
+import Chat from "../../assets/Chat.png";
+import { useState } from "react";
 
 const AnnounceChoice = (props) => {
-    const { informations } = props;
+    const { informations, canApply } = props;
+    const { userName, userToken } = useSelector(state => state.user);
+    const [seeApply, setSeeApply] = useState(false);
 
     // informations.from.diplay = `(${informations.from.x}; ${informations.from.x})`;
     // informations.to.diplay = `(${informations.to.x}; ${informations.to.x})`;
@@ -20,10 +26,32 @@ const AnnounceChoice = (props) => {
         navigate("/announce/" + informations.idCarPooling);
     }
 
+    const sendApply = async () => {
+        const requestOptions = {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + userToken
+            },
+            body: JSON.stringify({
+                username: userName,
+                idAnnounce: informations.idCarPooling
+            })
+        }
+        const res = await fetch(informationsSite.urlAPI + "/carPooling/ask/apply", requestOptions);
+        if(res.ok) {
+
+        } else {
+            alert("Fuck")
+        }
+    }
+
     return (
         <article 
             className="announce-choice"
             onClick={goToTheAnnouncementView}
+            onMouseEnter={() => setSeeApply(true)}
+            onMouseLeave={() => setSeeApply(false)}
         >
             <h5 className="announce-choice-places">
                 {informations.from.diplay}<br />-<br />{informations.to.diplay}
@@ -33,6 +61,18 @@ const AnnounceChoice = (props) => {
                 <span>{dateDisplayed}</span> |&nbsp;
                 <span>{informations.maxPlace}/{informations.currentPassenger}</span>
             </p>
+            {canApply && (
+                <button 
+                    className={`announce-choice-apply ${seeApply ? 'announce-choice-apply-visible' : ''}`}
+                    onClick={sendApply}
+                >
+                    <img 
+                        src={Chat} 
+                        alt="Postuler" 
+                        className="announce-choice-apply-img"
+                    />
+                </button>
+            )}
         </article>
     );
 }

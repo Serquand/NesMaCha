@@ -33,6 +33,7 @@ const SelectAnnounce = (props) => {
                 {listAnnounce.ourCarPoolings?.map((announce, index) => (
                     <AnnounceChoice 
                         informations={announce} 
+                        canApply={false}
                         key={index} 
                     />
                 ))}
@@ -44,6 +45,7 @@ const SelectAnnounce = (props) => {
                 {listAnnounce.otherCarPoolings?.map((announce, index) => (
                     <AnnounceChoice 
                         informations={announce} 
+                        canApply={true}
                         key={index} 
                     />
                 ))}

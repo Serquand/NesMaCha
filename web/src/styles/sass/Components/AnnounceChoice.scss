@@ -4,6 +4,7 @@
     border-bottom: 1px solid white;
     cursor: pointer;
     text-align: center;
+    position: relative;
 
     &-places {
         font-size: 15px;
@@ -20,5 +21,38 @@
         height: 1px;
         background-color: white;
         margin: 8px auto;
+    }
+
+    &-apply {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 30px;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(150, 150, 150, 0.7);
+        cursor: pointer;
+        transition: all 0.4s ease-out;
+        opacity: 0;
+        transition: all 0.4s ease-out;
+        
+        &-visible {
+            opacity: 1;
+        }
+
+        &:hover {
+            background-color: rgba(75, 75, 75, 1);
+        }
+
+        &-img {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
     }
 }
