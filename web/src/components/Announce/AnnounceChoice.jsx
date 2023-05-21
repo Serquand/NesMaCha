@@ -6,7 +6,7 @@ import Chat from "../../assets/Chat.png";
 import { useState } from "react";
 
 const AnnounceChoice = (props) => {
-    const { informations, canApply } = props;
+    const { informations, canApply, canAnswer } = props;
     const { userName, userToken } = useSelector(state => state.user);
     const [seeApply, setSeeApply] = useState(false);
 
@@ -59,7 +59,7 @@ const AnnounceChoice = (props) => {
             <div className="announce-choice-separator"></div>
             <p className="announce-choice-info">
                 <span>{dateDisplayed}</span> |&nbsp;
-                <span>{informations.maxPlace}/{informations.currentPassenger}</span>
+                <span>{informations.currentPassenger}/{informations.maxPlace}</span>
             </p>
             {canApply && (
                 <button 
@@ -72,6 +72,15 @@ const AnnounceChoice = (props) => {
                         className="announce-choice-apply-img"
                     />
                 </button>
+            )}
+            {canAnswer && (
+                <div className="announce-choice-applier">
+                    <div className="announce-choice-separator"></div>
+                    <p className="announce-choice-applier-pseudo">{informations.pseudoApplier}</p>
+                    <div className="announce-choice-applier-choice">
+                        <button>V</button><button>F</button><button>E</button>
+                    </div>
+                </div>
             )}
         </article>
     );

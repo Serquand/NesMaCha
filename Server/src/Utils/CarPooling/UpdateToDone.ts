@@ -3,7 +3,6 @@ import { Op } from "sequelize";
 
 const updateToDone: () => Promise<void> = async (): Promise<void> => {
     const date = new Date();
-    console.log(date.getTime())
     await CarPoolingModel.update({ status: "Done" }, {
         where: {
             [Op.and]: [

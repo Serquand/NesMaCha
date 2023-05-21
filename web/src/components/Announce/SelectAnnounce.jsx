@@ -6,7 +6,6 @@ import SelectChat from "../Chat/SelectChat";
 
 const SelectAnnounce = (props) => {
     const { listAnnounce } = props;
-    console.log(listAnnounce);
 
     const ourAnnonceInformations = {
         image: (<img src={Home} alt="Vos annonces" />), 
@@ -28,7 +27,7 @@ const SelectAnnounce = (props) => {
             <CreateAnnounceChoice />
 
             {/* Liste nos annonces */}
-            {listAnnounce.ourCarPoolings?.length && (<>
+            {listAnnounce.ourCarPoolings?.length ? (<>
                 <SelectChat informations={ourAnnonceInformations} />
                 {listAnnounce.ourCarPoolings?.map((announce, index) => (
                     <AnnounceChoice 
@@ -37,10 +36,10 @@ const SelectAnnounce = (props) => {
                         key={index} 
                     />
                 ))}
-            </>)}
+            </>) : null}
 
             {/* Liste les autres annonces */}
-            {listAnnounce.otherCarPoolings?.length && (<>
+            {listAnnounce.otherCarPoolings?.length ? (<>
                 <SelectChat informations={othersAnnounceInformations} />
                 {listAnnounce.otherCarPoolings?.map((announce, index) => (
                     <AnnounceChoice 
@@ -49,7 +48,7 @@ const SelectAnnounce = (props) => {
                         key={index} 
                     />
                 ))}
-            </>)}
+            </>) : null}
         </section>
     )
 }

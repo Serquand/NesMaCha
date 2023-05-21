@@ -6,6 +6,7 @@ import ListSelectChat from "../Chat/ListSelectChat";
 import SelectAnnounce from "../Announce/SelectAnnounce";
 import CreateChat from "../Chat/CreateChat";
 import { socket } from "../../Socket/socket";
+import SelectAsk from "../Ask/SelectAsk";
 
 const SideBar = () => {
     const [informations, setInformations] = useState([]);
@@ -18,7 +19,7 @@ const SideBar = () => {
     const endpoints = {
         Chat: "/chat/list", 
         Annonces: "/carPooling/list", 
-        Demandes: "/chat/list",
+        Demandes: "/carPooling/ask/list",
         Historiques: "/chat/list"
     }
 
@@ -34,6 +35,7 @@ const SideBar = () => {
                 const res = await fetch(appInformations.urlAPI + endpoints[category] + "/" + userName);
                 if(!res.ok) return setInformations([]);
                 const data = await res.json();
+                console.log(data);
                 setInformations(data.list);
             } catch {
                 setInformations([]);
@@ -51,6 +53,7 @@ const SideBar = () => {
                     startCreation={() => setCreateChat(true)}
                 />}
                 {category == "Annonces" && <SelectAnnounce listAnnounce={informations} />}
+                {category == "Demandes" && <SelectAsk listAsk={informations} />}
             </section>}
             {createChat && <CreateChat endCreation={() => setCreateChat(false)} />}
         </div>
