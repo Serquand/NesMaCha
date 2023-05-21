@@ -25,6 +25,7 @@
 
     &-apply {
         position: absolute;
+        z-index: 10;
         top: 50%;
         transform: translateY(-50%);
         right: 30px;
@@ -53,6 +54,57 @@
             width: 25px;
             height: 25px;
             object-fit: contain;
+        }
+    }
+
+    &-applier {
+        position: relative;
+        z-index: 10;
+        &-choice {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+
+            button {
+                outline: none;
+                border: none;
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: transparent;
+                 
+                div {
+                    height: 16px;
+                    width: 16px;
+                }
+            }
+
+            > :first-child {
+                border: 1px solid rgb(17, 162, 17);
+
+                div {
+                    background-color: rgb(17, 162, 17);
+                }
+            }
+
+            > :nth-child(2) {    
+                border: 1px solid red;
+                
+                div {
+                    background-color: red;
+                }
+            }
+
+            > :last-child {   
+                img {
+                    width: 15px;
+                    height: 15px;
+                    object-fit: contain;
+                }
+            }
         }
     }
 }

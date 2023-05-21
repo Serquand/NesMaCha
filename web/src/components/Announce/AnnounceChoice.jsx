@@ -4,11 +4,13 @@ import informationsSite from "../../../informations.json";
 import { useSelector } from "react-redux";
 import Chat from "../../assets/Chat.png";
 import { useState } from "react";
+import SendMail from '../../assets/Chat.png'
 
 const AnnounceChoice = (props) => {
     const { informations, canApply, canAnswer } = props;
     const { userName, userToken } = useSelector(state => state.user);
     const [seeApply, setSeeApply] = useState(false);
+    const [validAsk, setValidAsk] = useState(true);
 
     // informations.from.diplay = `(${informations.from.x}; ${informations.from.x})`;
     // informations.to.diplay = `(${informations.to.x}; ${informations.to.x})`;
@@ -46,6 +48,16 @@ const AnnounceChoice = (props) => {
         }
     }
 
+    const answerAsk = async () => {
+        const requestOptions = {
+            method: "POST", 
+            headers: { "Content-Type": "application/json" }, 
+            body: JSON.stringify({ answer: validAsk, idAsk: informations.idAsk })
+        }
+
+        const res = await fetch(informationsSite.urlAPI + "/carPooling/ask/answer", requestOptions);
+    }
+
     return (
         <article 
             className="announce-choice"
@@ -78,7 +90,17 @@ const AnnounceChoice = (props) => {
                     <div className="announce-choice-separator"></div>
                     <p className="announce-choice-applier-pseudo">{informations.pseudoApplier}</p>
                     <div className="announce-choice-applier-choice">
-                        <button>V</button><button>F</button><button>E</button>
+                        <button onClick={() => setValidAsk(true)}>
+                            {validAsk && <div></div>}
+                        </button>
+                        
+                        <button onClick={() => setValidAsk(false)}>
+                            {!validAsk && <div></div>}
+                        </button>
+                        
+                        <button onClick={answerAsk}>
+                            <img src={SendMail} alt="Envoyer" />
+                        </button>
                     </div>
                 </div>
             )}

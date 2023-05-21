@@ -68,7 +68,8 @@ const ListAsk = async (req: Request, res: Response) => {
             maxPlace: currentTrip.maxPassenger,
             currentPassenger: currentTrip.currentPassenger,
             idCarPooling: currentTrip.idCarPooling,                
-            pseudoApplier
+            pseudoApplier,
+            idAsk: allAsk[i].dataValues.idPassenger
         })
     }
 

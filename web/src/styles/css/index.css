@@ -756,6 +756,7 @@ a, a::after, a::before {
 }
 .announce-choice-apply {
   position: absolute;
+  z-index: 10;
   top: 50%;
   transform: translateY(-50%);
   right: 30px;
@@ -781,6 +782,47 @@ a, a::after, a::before {
 .announce-choice-apply-img {
   width: 25px;
   height: 25px;
+  object-fit: contain;
+}
+.announce-choice-applier {
+  position: relative;
+  z-index: 10;
+}
+.announce-choice-applier-choice {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.announce-choice-applier-choice button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+.announce-choice-applier-choice button div {
+  height: 16px;
+  width: 16px;
+}
+.announce-choice-applier-choice > :first-child {
+  border: 1px solid rgb(17, 162, 17);
+}
+.announce-choice-applier-choice > :first-child div {
+  background-color: rgb(17, 162, 17);
+}
+.announce-choice-applier-choice > :nth-child(2) {
+  border: 1px solid red;
+}
+.announce-choice-applier-choice > :nth-child(2) div {
+  background-color: red;
+}
+.announce-choice-applier-choice > :last-child img {
+  width: 15px;
+  height: 15px;
   object-fit: contain;
 }
 
