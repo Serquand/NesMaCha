@@ -1,17 +1,24 @@
+import { useEffect, useState } from "react";
 import AnnounceChoice from "../Announce/AnnounceChoice";
 
 const SelectAsk = (props) => {
     const { listAsk } = props;
+    const [ask, setAsk] = useState([]);
+
+    useEffect(() => setAsk(listAsk), [listAsk]);
+
+    const removeFromList = (askId) => setAsk(ask.filter(value => askId != value.idAsk));
 
     return (
         <section>
-            {listAsk?.length ? (<>
-                {listAsk.map((ask, index) => (
+            {ask?.length ? (<>
+                {ask.map((a, index) => (
                     <AnnounceChoice 
-                        informations={ask} 
+                        informations={a} 
                         canApply={false}
                         canAnswer={true}
                         key={index} 
+                        removeFromList={() => removeFromList(a.idAsk)}
                     />
                 ))}
             </>) : (<>

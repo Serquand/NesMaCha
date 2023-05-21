@@ -2,7 +2,6 @@ import AnnounceChoice from "./AnnounceChoice";
 
 const SelectHistory = (props) => {
     const {history} = props;
-    console.log(history);
 
     return (
         <section>

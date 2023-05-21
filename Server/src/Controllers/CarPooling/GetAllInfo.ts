@@ -33,7 +33,6 @@ const getAllInfo = async (req: Request, res: Response) => {
             u.idUser = p.passenger AND
             p.carPooling = ?;
     `, { replacements: [req.params.idCarPooling] }))[0] as any[];
-    console.log(passengerList);
 
     carPooolingInfo.passengers = new Array<string>();
     for(let i = 0; i < passengerList.length; i++) {
