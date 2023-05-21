@@ -7,6 +7,7 @@ import SelectAnnounce from "../Announce/SelectAnnounce";
 import CreateChat from "../Chat/CreateChat";
 import { socket } from "../../Socket/socket";
 import SelectAsk from "../Ask/SelectAsk";
+import SelectHistory from "../Announce/SelectHistory";
 
 const SideBar = () => {
     const [informations, setInformations] = useState([]);
@@ -20,7 +21,7 @@ const SideBar = () => {
         Chat: "/chat/list", 
         Annonces: "/carPooling/list", 
         Demandes: "/carPooling/ask/list",
-        Historiques: "/chat/list"
+        Historique: "/carPooling/history"
     }
 
     socket?.on("newInformation", (payload) => {
@@ -48,12 +49,10 @@ const SideBar = () => {
     return (
         <div>
             {isVisibled && <section className="sidebar">
-                {category == "Chat" && <ListSelectChat 
-                    informations={informations} 
-                    startCreation={() => setCreateChat(true)}
-                />}
+                {category == "Chat" && <ListSelectChat informations={informations} startCreation={() => setCreateChat(true)} />}
                 {category == "Annonces" && <SelectAnnounce listAnnounce={informations} />}
                 {category == "Demandes" && <SelectAsk listAsk={informations} />}
+                {category == "Historique" && <SelectHistory history={informations} />}
             </section>}
             {createChat && <CreateChat endCreation={() => setCreateChat(false)} />}
         </div>

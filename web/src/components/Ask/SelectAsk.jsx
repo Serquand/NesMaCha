@@ -2,7 +2,6 @@ import AnnounceChoice from "../Announce/AnnounceChoice";
 
 const SelectAsk = (props) => {
     const { listAsk } = props;
-    console.log(listAsk);
 
     return (
         <section>
