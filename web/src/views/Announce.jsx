@@ -1,5 +1,4 @@
 import "../styles/css/index.css";
-import "../styles/css/test.css";
 
 import informations from "../../informations.json";
 // --------------- Libraries import ---------------
@@ -156,7 +155,7 @@ const Announce = (props) => {
         requestOptions.headers["Authorization"] = "Bearer " + userToken
         requestOptions["body"] = JSON.stringify(announce_data)
 
-        console.log(requestOptions);
+        console.log(announce_data);
 
         // Generate the request
         res = await fetch(informations.urlAPI + "/carpooling/create", requestOptions);

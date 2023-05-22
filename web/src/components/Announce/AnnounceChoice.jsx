@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import informationsSite from "../../../informations.json";
 import { useSelector } from "react-redux";
 import Chat from "../../assets/Chat.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SendMail from '../../assets/Chat.png'
 
 const AnnounceChoice = (props) => {
@@ -11,11 +11,23 @@ const AnnounceChoice = (props) => {
     const { userName, userToken } = useSelector(state => state.user);
     const [seeApply, setSeeApply] = useState(false);
     const [validAsk, setValidAsk] = useState(true);
+    const [fromDisplay, setFromDisplay] = useState("");
+    const [toDisplay, setToDisplay] = useState("");
 
-    // informations.from.diplay = `(${informations.from.x}; ${informations.from.x})`;
-    // informations.to.diplay = `(${informations.to.x}; ${informations.to.x})`;
-    informations.from.diplay = "30-32 avenue de la République";
-    informations.to.diplay = "30-32 avenue de la République";
+    useEffect(() => {
+        const getAdress = async () => {
+            const toRes = await fetch(`https://api-adresse.data.gouv.fr/reverse/?lon=${informations.to.y}&lat=${informations.to.x}`);
+            const toData = (await toRes.json()).features[0].properties.name;
+            setToDisplay(toData);
+
+            const fromRes = await fetch(`https://api-adresse.data.gouv.fr/reverse/?lon=${informations.from.y}&lat=${informations.from.x}`);
+            const fromData = (await fromRes.json()).features[0].properties.name;
+            setFromDisplay(fromData);
+        }   
+
+        getAdress();
+    })
+
 
     informations.date = new Date(parseInt(informations.dateDeparture))
     const date = new Date(1684619827468);
@@ -66,7 +78,7 @@ const AnnounceChoice = (props) => {
             onMouseLeave={() => setSeeApply(false)}
         >
             <h5 className="announce-choice-places">
-                {informations.from.diplay}<br />-<br />{informations.to.diplay}
+                {fromDisplay}<br />-<br />{toDisplay}
             </h5>
             <div className="announce-choice-separator"></div>
             <p className="announce-choice-info">

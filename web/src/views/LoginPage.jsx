@@ -14,7 +14,6 @@ import Password from "../assets/password.png";
 import PasswordCheck from "../assets/password-check.png";
 // ----------------- Other import -----------------
 import "../styles/css/index.css";
-import "../styles/css/test.css";
 import informations from "../../informations.json";
 import { setLogin } from "../store/User";
 
