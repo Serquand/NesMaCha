@@ -7,13 +7,14 @@ import { useState, useEffect } from "react";
 import SendMail from '../../assets/Chat.png'
 
 const AnnounceChoice = (props) => {
-    const { informations, canApply, canAnswer } = props;
+    const { informations, canApply, canAnswer, switchList, removeFromList } = props;
     const { userName, userToken } = useSelector(state => state.user);
     const [seeApply, setSeeApply] = useState(false);
     const [validAsk, setValidAsk] = useState(true);
     const [fromDisplay, setFromDisplay] = useState("");
     const [toDisplay, setToDisplay] = useState("");
 
+    
     useEffect(() => {
         const getAdress = async () => {
             const toRes = await fetch(`https://api-adresse.data.gouv.fr/reverse/?lon=${informations.to.y}&lat=${informations.to.x}`);
@@ -28,15 +29,12 @@ const AnnounceChoice = (props) => {
         getAdress();
     })
 
-
-    informations.date = new Date(parseInt(informations.dateDeparture))
-    const date = new Date(1684619827468);
+    const date = new Date(parseInt(informations.dateDeparture));
     const dateDisplayed = date.getDate().toString().padStart(2, "0") + "/" + (date.getMonth() + 1).toString().padStart(2, "0") + "/" + date.getFullYear() + " - " + date.getHours().toString().padStart(2, "0") + ":" + date.getMinutes().toString().padStart(2, "0");
 
     const navigate = useNavigate();
 
     const goToTheAnnouncementView = () => {
-        console.log(informations.idCarPooling);
         navigate("/announce/" + informations.idCarPooling);
     }
 
@@ -53,11 +51,7 @@ const AnnounceChoice = (props) => {
             })
         }
         const res = await fetch(informationsSite.urlAPI + "/carPooling/ask/apply", requestOptions);
-        if(res.ok) {
-
-        } else {
-            alert("Fuck")
-        }
+        switchList();
     }
 
     const answerAsk = async () => {
@@ -68,6 +62,7 @@ const AnnounceChoice = (props) => {
         }
 
         const res = await fetch(informationsSite.urlAPI + "/carPooling/ask/answer", requestOptions);
+        removeFromList();
     }
 
     return (

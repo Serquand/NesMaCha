@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import Passenger from '../../Models/Passenger';
+import CarPoolingModel from '../../Models/CarPoolingModel';
 
 const AnswerAsk = async (req: Request, res: Response) => {
     if(req.body.answer) {
@@ -7,6 +8,15 @@ const AnswerAsk = async (req: Request, res: Response) => {
             { passengerValidate: true }, 
             { where: { idPassenger: req.body.idAsk } }
         )
+
+        const idCarPooling = (await Passenger.findOne({
+            where: { idPassenger: req.body.idAsk }
+        }))?.dataValues.carPooling;
+
+        await CarPoolingModel.increment("currentPassenger", {
+            by: 1, 
+            where: { idCarPooling }
+        })
     } else {
         await Passenger.destroy({ where: { idPassenger: req.body.idAsk } })
     }

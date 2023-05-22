@@ -8,12 +8,16 @@ import { sendMessage } from "../Socket/socket.ts";
 import WhoIsReceived from "../components/Chat/WhoIsReceived";
 import { socket } from "../Socket/socket.ts";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Chat = () => {
     const chatId = useParams().chatId;
     const [messages, setMessages] = useState([]);
     const [channelName, setChannelName] = useState("");
     const [listUserInChannel, setListUserInChannel] = useState([]);
+    const { userToken } = useSelector(state => state.user);
+    const navigate = useNavigate();
 
     const location = useLocation();
 

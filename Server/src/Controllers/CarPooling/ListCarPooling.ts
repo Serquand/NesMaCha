@@ -2,10 +2,24 @@ import { Request, Response } from 'express'
 import { CarPooling } from '../../Types/CarPooling';
 import Adress from '../../Models/Adress';
 import Connection from '../../Models/Connection';
+import Passenger from '../../Models/Passenger';
+import { Op } from 'sequelize';
+import User from '../../Models/User';
 
 const ListCarPooling = async (req: Request, res: Response) => {
     const ourCarPoolings = new Array<CarPooling>();
     const otherCarPoolings = new Array<CarPooling>();
+    const waitingAnswer = new Array<CarPooling>();
+    const passengerList = new Array<CarPooling>();
+
+    const userId = (await User.findOne({
+        where: { pseudo: req.params.pseudo }
+    }))?.dataValues.idUser;
+
+    if(!userId) {
+        return res.status(400).json({ information: "Woooops... Something went wrong !" })
+    }
+
     const tempCarPoolings = (await Connection.query(`
         SELECT 
             u.pseudo AS driver, 
@@ -42,8 +56,26 @@ const ListCarPooling = async (req: Request, res: Response) => {
             idCarPooling: tempCarPoolings[i].idCarPooling
         }
 
+        if(tempCarPoolings[i].status != "Incoming") continue;
+
+        // Check if it's a waiting
+        const isPassenger = (await Passenger.findOne({
+            where: {
+                [Op.and]: [
+                    { carPooling: infoCarPoolings.idCarPooling },
+                    { passenger: userId }
+                ]
+            }
+        }))?.dataValues;
+
+        if(isPassenger) {
+            if(isPassenger.passengerValidate) passengerList.push(infoCarPoolings)
+            else waitingAnswer.push(infoCarPoolings);
+            continue;
+        }
+        
+
         if(tempCarPoolings[i].driver == req.params.pseudo) { 
-            if(tempCarPoolings[i].status != "Incoming") continue;
             ourCarPoolings.push(infoCarPoolings);
         } else {
             otherCarPoolings.push(infoCarPoolings);
@@ -53,7 +85,9 @@ const ListCarPooling = async (req: Request, res: Response) => {
     return res.status(200).json({ 
         list: {
             ourCarPoolings, 
-            otherCarPoolings 
+            otherCarPoolings,
+            passengerList,
+            waitingAnswer
         }
     });
 }   

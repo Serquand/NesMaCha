@@ -33,7 +33,10 @@ const ListAsk = async (req: Request, res: Response) => {
     // Fetch all ask 
     const allAsk = (await Passenger.findAll({
         where: {
-            carPooling: { [Op.or]: ourAnnounceIds },
+            [Op.and]: [
+                { carPooling: { [Op.or]: ourAnnounceIds } },
+                { passengerValidate: false }
+            ]
         }
     }));
     if(allAsk.length == 0) return res.status(200).json({ list: [] });

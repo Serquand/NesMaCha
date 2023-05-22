@@ -21,7 +21,6 @@ const AnnounceView = () => {
         const getInfo = async () => {
             const res = await fetch(informations.urlAPI + "/carPooling/" + idAnnouce);
             const data = await res.json();
-            console.log(data);
             setInfo(data);
             // if(!res.ok) // To handle
         };
