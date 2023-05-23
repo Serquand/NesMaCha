@@ -15,6 +15,7 @@ const FormSendMsg = (props) => {
         <form 
             onSubmit={sendMsg}
             className="chat-form"
+            style={{ position: "fixed" }}
         >
             <textarea 
                 className="chat-form-textarea" 

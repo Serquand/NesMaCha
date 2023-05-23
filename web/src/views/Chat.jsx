@@ -51,14 +51,14 @@ const Chat = () => {
 
     return (
         <>
-            <div  style={{height: "100vh"}} className="chat">
+            <div  style={{ maxHeight: "100vh" }} className="chat">
                 <WhoIsReceived 
                     nameGroup={channelName} 
                     listPerson={listUserInChannel}
                 />
 
                 {/* Liste des messages */}
-                <div className="messages">
+                <div className="messages" style={{ paddingBottom: "40px" }}>
                     {messages.map((message, index) => 
                     <>
                         <Message 

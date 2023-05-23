@@ -17,7 +17,6 @@ const getAllInfo = async (req: Request, res: Response) => {
             cp.idCarPooling 
         FROM Users AS u, CarPoolings AS cp
         WHERE 
-            cp.status = "Incoming" AND 
             cp.driver = u.idUser AND
             cp.idCarPooling = ?;
     `, { replacements: [req.params.idCarPooling] }))[0][0] as CarPooling | null;   

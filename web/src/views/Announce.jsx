@@ -1,14 +1,19 @@
 import "../styles/css/index.css";
 
 import informations from "../../informations.json";
+
 // --------------- Libraries import ---------------
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 // --------------- Components import ---------------
 import Loader from "../components/General/Loader";
 import Modal from "../components/General/Modal";
 import InputField from "../components/General/InputField";
+import LeaftLetView from "../components/General/LeafletView";
+
 // ----------------- Images import -----------------
 import Address from "../assets/address.png";
 import City from "../assets/city.png";
@@ -38,6 +43,29 @@ const Announce = (props) => {
     const dateRef = useRef();
     const timeRef = useRef();
 
+    const efreiCoords = [48.788556, 2.364018];
+    const [allCoords, setAllCoords] = useState([{ coords: efreiCoords, popUp: "EFREI Paris" }]);
+    const [key, setKey] = useState(0);
+    const zoomLevel = 12.5;
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!userToken) {
+            return navigate("/"); 
+        }
+    }, []);
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(position => {
+            const temp = allCoords;
+            temp.push({ 
+                coords: [position.coords.latitude, position.coords.longitude], 
+                popUp: "Votre localisation" 
+            })
+            setAllCoords(temp);
+            setKey(key + 1);
+        })
+    }, []);
 
     const formSubmit = async () => {
         // Put the loader
@@ -369,6 +397,15 @@ const Announce = (props) => {
 
     return (
         <div className="announce-body">
+             <div id="map">
+                <LeaftLetView 
+                    center={efreiCoords} 
+                    allMarkers={allCoords} 
+                    zoomLevel={zoomLevel} 
+                    key={key}
+                />
+            </div>
+
             {creation && <Modal
                 titleModal="Créer une annonce"
                 nameButton="Créer"

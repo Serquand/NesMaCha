@@ -31,7 +31,7 @@ function App() {
                         <Route path='/chat/:chatId' element = { <Chat /> } />
                         <Route path="/home" element={ <Home /> }/>
                         <Route path="/profile" element={<Profil />} />
-                        <Route path="/history/:idHistory" element={ <History /> } />
+                        <Route path="/history/:idAnnounce" element={ <History /> } />
                         <Route path="/announce" element={ <Announce /> }></Route>
                         <Route path="/announce/:idAnnounce" element={<AnnounceView />}></Route>
                         <Route path="*" element={ <NotFound /> } />

@@ -1,13 +1,16 @@
 .chat-form {
     display: flex; 
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
-    bottom: 10px;
     gap: 10px;
     padding-left: 260px;
     padding-right: 5px;
     margin: auto;
+    bottom: 0px;
+    padding-bottom: 10px;
+    background-color: white;
+
 
     &-textarea {
         height: 30px;
