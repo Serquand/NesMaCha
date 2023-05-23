@@ -266,7 +266,6 @@ a, a::after, a::before {
 
 #icon {
   width: 60px;
-  height: -moz-fit-content;
   height: fit-content;
 }
 #icon path {
@@ -336,7 +335,6 @@ a, a::after, a::before {
 .connection-block {
   display: flex;
   width: 350px;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 30px 15px;
   border-radius: 15px;
@@ -349,9 +347,7 @@ a, a::after, a::before {
 
 .connection-header {
   display: flex;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   flex-direction: column;
   align-items: center;
@@ -367,8 +363,7 @@ a, a::after, a::before {
   padding: 7px 10px;
   border-radius: 10px;
   flex-direction: row;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
+  column-gap: 10px;
   background-color: #A0A0A0;
 }
 
@@ -527,8 +522,7 @@ a, a::after, a::before {
 .menu-header-element img {
   width: 25px;
   height: 25px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .menu-header-element:last-child {
   border-left: 2px solid white;
@@ -564,8 +558,7 @@ a, a::after, a::before {
 .select-chat-img-content img {
   width: 15px;
   height: 15px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 .select-chat-img-unseen {
   font-size: 10px;
@@ -645,8 +638,7 @@ a, a::after, a::before {
 .banner-alert-shape {
   padding: 15px 50px;
   background-color: rgb(11, 11, 69);
-  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 50%, 100% 100%, 0 100%, 30px 50%);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 50%, 100% 100%, 0 100%, 30px 50%);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 50%, 100% 100%, 0 100%, 30px 50%);
 }
 .banner-alert-shape p {
   text-overflow: ellipsis;
@@ -693,9 +685,7 @@ a, a::after, a::before {
 
 .create-announce {
   display: flex;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 30px 15px;
   border-radius: 15px;
@@ -718,8 +708,7 @@ a, a::after, a::before {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: stretch;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
+  column-gap: 10px;
 }
 
 .horiz-separator {
@@ -733,7 +722,6 @@ a, a::after, a::before {
 .message {
   margin-bottom: 10px;
   max-width: 60%;
-  width: -moz-fit-content;
   width: fit-content;
   margin-left: 10px;
 }
@@ -843,8 +831,7 @@ a, a::after, a::before {
 .announce-choice-apply-img {
   width: 25px;
   height: 25px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 .announce-choice-applier {
   position: relative;
@@ -885,6 +872,7 @@ a, a::after, a::before {
 .announce-choice-applier-choice > :last-child img {
   width: 15px;
   height: 15px;
-  -o-object-fit: contain;
-     object-fit: contain;
-}/*# sourceMappingURL=index.css.map */
+  object-fit: contain;
+}
+
+/*# sourceMappingURL=index.css.map */
