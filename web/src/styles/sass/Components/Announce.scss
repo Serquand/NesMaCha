@@ -1,0 +1,47 @@
+.announce-body {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.create-announce {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    padding: 30px 15px;
+    border-radius: 15px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 25px;
+}
+
+.col-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    row-gap: 10px;
+}
+
+.row-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+    column-gap: 10px;
+}
+
+.horiz-separator {
+    width: 200px;
+    border-width: 2px;
+    border-radius: 1px;
+    border-style: solid;
+    border-color: #A0A0A0;
+}

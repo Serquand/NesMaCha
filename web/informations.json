@@ -1,0 +1,4 @@
+{
+    "urlAPI": "http://localhost:5050",
+    "addrGouvAPI": "http://api-adresse.data.gouv.fr/search"
+}

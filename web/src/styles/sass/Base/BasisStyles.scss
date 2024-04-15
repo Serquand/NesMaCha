@@ -1,0 +1,38 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    
+    > div {
+        position: fixed;
+    }
+
+    &-layout {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(20, 20, 20, .7);
+    }
+
+    &-content {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 10px 0px;
+        
+        .modal-title-container {
+            overflow: hidden;
+        }
+
+        h2 {
+            transform: translateY(100%);
+            overflow: hidden;
+            animation: apparitionTitle .5s cubic-bezier(.17, .67, .11, .88) forwards;
+        }
+    }
+}

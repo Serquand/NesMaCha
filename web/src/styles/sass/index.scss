@@ -1,0 +1,34 @@
+// Basis styles
+@import "./Base/Reset.scss";
+@import "./Base/BasisStyles.scss";
+@import "./Base/BasicAnimation.scss";
+
+// Utils styles
+
+// Pages styles
+@import "./Pages/Chat.scss";
+@import "./Pages/NotFound.scss";
+@import "./Pages/Announce.scss";
+
+// Layout styles
+@import "./Layouts/Modal.scss";
+@import "./Layouts/HeaderBar.scss";
+@import "./Layouts/SideBar.scss";
+@import "./Layouts/LeafletView.scss";
+@import "./Layouts/SearchPlace.scss";
+@import "./Layouts/Connection.scss";
+@import "./Layouts/ValidateMailCode.scss";
+@import './Layouts/CreateGroup.scss';
+
+// Components styles
+@import "./Components/Loader.scss";
+@import "./Components/CardToProfile.scss";
+@import "./Components/MenuHeader.scss";
+@import "./Components/SelectChat.scss";
+@import "./Components/FormSendMsg.scss";
+@import "./Components/BannerAlert.scss";
+@import "./Components/Announce.scss";
+@import './Components/Messages.scss';
+@import "./Components/WhoIsReceived.scss";
+@import "./Components/CreateChatMember.scss";
+@import './Components/AnnounceChoice.scss';

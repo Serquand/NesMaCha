@@ -1,0 +1,20 @@
+.header {
+    width: 100%;
+    position: fixed;
+    background-color: rgb(11, 11, 69);
+    z-index: 1500;
+    height: 52px;
+    top: 0px;
+
+    &-content {
+        
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 5px 40px;
+
+        > :nth-child(2) {
+            margin: auto 0 auto auto;
+        }
+    }
+}

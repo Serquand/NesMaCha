@@ -1,0 +1,12 @@
+.announce-view {
+    position: absolute;
+    display: flex;
+    width: calc(100vw - 16em);
+    height: 100vh;
+    right: 0;
+    padding-top: 52px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 15px;
+}

@@ -1,0 +1,165 @@
+.not-found-main-container {
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(4, 4, 28);
+}
+.info {
+    position:absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.glitch-bloc {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.txt-info {
+    color: white;
+}
+
+.glitchedAnim,
+.invisible-text {
+    font-family: Unica One, sans-serif;
+    font-size: 250px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: white;
+}
+.glitchedAnim {
+    position: absolute;
+    top: 0;
+    opacity: 0.9;
+}
+.invisible-text {
+    visibility: hidden;
+}
+.glitchedAnim:nth-child(2) {
+    animation: skewAnim 3s infinite;
+}
+.glitchedAnim:nth-child(3) {
+    animation: glitchAnim2 3s infinite;
+}
+.glitchedAnim:nth-child(4) {
+    animation: glitchAnim1 3s infinite;
+}
+
+.txt-info {
+    font-family: Open Sans, sans-serif;
+    font-size: 20px;
+}
+
+@keyframes glitchAnim1 {
+    7% {
+        transform: none;
+    }
+    10% {
+        transform: translate(6px, -2px);
+    }
+    13% {
+        transform: none;
+    }
+    20% {
+        transform: none;
+    }
+    23% {
+        transform: translate(-12px, -7px);
+    }
+    26% {
+        transform: none;
+    }
+    40% {
+        transform: none;
+    }
+    43% {
+        transform: translate(10px, -9px);
+    }
+    46% {
+        transform: none;
+    }
+    65% {
+        transform: none;
+    }
+    68% {
+        transform: translate(7px, 5px);
+    }
+    71% {
+        transform: none;
+    }
+    100% {
+        transform: none;
+    }
+}
+
+@keyframes glitchAnim2 {
+    7% {
+        transform: none;
+    }
+    10% {
+        transform: translate(-6px, 2px);
+    }
+    13% {
+        transform: none;
+    }
+    20% {
+        transform: none;
+    }
+    23% {
+        transform: translate(12px, 7px);
+    }
+    26% {
+        transform: none;
+    }
+    40% {
+        transform: none;
+    }
+    43% {
+        transform: translate(-10px, 9px);
+    }
+    46% {
+        transform: none;
+    }
+    65% {
+        transform: none;
+    }
+    68% {
+        transform: translate(-7px, 5px);
+    }
+    71% {
+        transform: none;
+    }
+    100% {
+        transform: none;
+    }
+}
+
+@keyframes skewAnim {
+    20% {
+        transform: none;
+    }
+    23% {
+        transform: skew(5deg, -5deg) translate(10px, 5px);
+    }
+    26% {
+        transform: none;
+    }
+    40% {
+        transform: none;
+    }
+    43% {
+        transform: skew(5deg, -10deg) translate(-5px, 2px);
+    }
+    46% {
+        transform: none;
+    }
+    100% {
+        transform: none;
+    }
+}

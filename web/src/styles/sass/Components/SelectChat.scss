@@ -1,0 +1,54 @@
+.select-chat {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    display: flex;  
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    overflow-x: hidden;
+    color: white;
+
+    &-img {
+        min-width: 30px;
+        min-height: 30px;
+        border-radius: 50%;
+        background-color: #555;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &-content {
+            display: flex;  
+            place-items: center;
+            img {
+                width: 15px;
+                height: 15px;
+                object-fit: contain;
+            }
+        }
+
+        &-unseen {
+            font-size: 10px;
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+            display: flex;  
+            justify-content: center;
+            align-items: center;
+            transform: translate(40%);
+        }
+    }
+
+    &-user {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden; 
+    }
+}

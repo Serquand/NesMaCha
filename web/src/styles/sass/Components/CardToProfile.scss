@@ -1,0 +1,10 @@
+.card-to-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+
+    &-img {
+        width: 40px;
+    }
+}   
